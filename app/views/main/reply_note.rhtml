@@ -1,0 +1,28 @@
+<div id="original_note">
+    <p><%= @original_note.note %></p>
+	
+</div>
+
+<div id="reply_list">
+   <% if @original_note.replies || !@original_note.replies.empty? %>
+	   <h3><%= @original_note.replies.size %> replies.</h3>
+	   <hr/>
+   <% end %>
+
+   <% for reply in @original_note.replies %>
+      <%= render :partial => "reply_item", :object => reply %>
+   <% end %> 
+</div>
+
+<div id="note_form">
+  <span id="indicator_image_note" style="display:none"><%= image_tag 'spinner_very_large.gif' %></span>
+  <% form_remote_tag(:url => reply_note_path(@original_note), 
+                     :update => 'reply_list',
+                     :position => 'bottom' 
+  ) do %>
+  <%= text_area 'note', 'note', :rows => 4 %> <br/>
+  <br/>
+  <%= submit_tag 'Post It!' %>
+  <% end %> 
+    
+</div>

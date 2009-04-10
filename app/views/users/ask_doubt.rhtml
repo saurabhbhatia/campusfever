@@ -1,0 +1,22 @@
+<html>
+<b><font color ='green'>Given By : </font></b><%= @faculty.fac_displayname %><br><br>
+<b><font color ='green'>Question : </font></b><%= @question.question %><br>
+<b><font color ='green'>Answer : </font></b><%= @answer.answer %><br>
+<% if @doubt1 != nil %>
+<% for i in @doubt1 %>
+<b><font color ='green'>Doubt : </font></b><%= i.doubt %><br>
+<b><font color ='green'>Answer : </font></b><%= i.answer %><br>
+<% end %>
+<% end %>
+<b><font color ='green'>Given By : </font></b><%= @faculty.fac_displayname %><br><br>
+
+<%= error_messages_for 'doubt' %>
+
+<% form_tag :action => 'create_doubt', :id => @user, :questid => @question do %>
+
+<p><label for="doubt_question"><font color='green' ><b> Doubt :</b></font></label><br>
+<%= text_area 'doubt', 'doubt',   "cols" => 29, "rows" => 5 %></p>
+
+  <%= submit_tag "Send" %>
+<% end %>
+<%= link_to 'back', :action => 'view_my_ans', :id =>@user, :questid => @question %>

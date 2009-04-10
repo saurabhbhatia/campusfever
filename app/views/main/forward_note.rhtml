@@ -1,0 +1,12 @@
+<h2>Forward note</h2>
+<div id="note_form">
+  <% form_tag(:url => reply_note_path(@original_note)) do %>
+  <%= text_area 'note', 'note', :rows => 4 %> <br/>
+  Send to:
+  <select name="target" id="target">
+    <%= @option_str %>
+  </select>
+  <br/>
+  <%= submit_tag 'Post It!' %>
+  <% end %>
+</div>

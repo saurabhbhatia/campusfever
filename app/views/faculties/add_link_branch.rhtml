@@ -1,0 +1,13 @@
+<HTML>
+  <HEAD>
+    <%= javascript_include_tag "prototype" %>
+  </HEAD>
+
+<BODY>
+<p>	<% @branches.each do |@branches| %>
+	<%= @html = "<input type='checkbox' id='branch_id' name='branch[branch_id][]' value='#{@branches.id}'>#{@branches.branch}" %>
+	<% end %>
+</p>
+
+</BODY>
+</HTML>

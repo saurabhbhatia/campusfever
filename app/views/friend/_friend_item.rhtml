@@ -1,0 +1,7 @@
+<div id="friend_<%= friend_item.id %>">
+<%= link_to friend_item.login, main_path(friend_item.login) %>&nbsp;&nbsp;
+<%= link_to_remote 'x',
+    :url => delete_friend_path(friend_item),
+    :confirm => 'Are you sure to unfriend this user?'
+%>
+</div>

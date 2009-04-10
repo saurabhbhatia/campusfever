@@ -1,0 +1,26 @@
+<div id="new_author_using_ajax_popup" class="popup" style="display:none">
+  <h1>Question Specific Instruction</h1>
+<% form_remote_for(:exam, :url => { :action => 'new' },
+                     :loading => "Element.show('popup_spinner');Form.disable('exam_form');",
+                     :complete => "Element.hide('popup_spinner');Form.enable('exam_form');",
+                     :html => {:id => 'exam_form'}
+                    ) do |f| %>
+
+    <p>
+      <b>Add Instruction</b><br />
+      <%= f.text_field :instructions %>
+    </p>
+
+    <p>
+      <b>Last name</b><br />
+      <%= f.text_field :name %>
+    </p>
+
+    <p>
+    <%= submit_tag 'Create' %>
+    <%= tag :input, :type => 'button', :value => 'Cancel', :class => 'popup_closebox' %>
+    <%= image_tag 'spinner.gif', :id => 'popup_spinner', :style => 'display:none' %>
+    </p>
+  <% end %>
+</div>
+<%= javascript_tag "new Popup('new_author_using_ajax_popup','new_author_using_ajax_link',{modal:true})" %>

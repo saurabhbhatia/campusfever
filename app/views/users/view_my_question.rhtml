@@ -1,0 +1,4 @@
+<html>
+<% for i in @question %>
+<%= link_to i.question, :action =>'view_my_ans', :id =>@user, :questid => i.id %><br>
+<% end %>

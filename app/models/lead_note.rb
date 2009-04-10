@@ -1,0 +1,2 @@
+class LeadNote < Note
+end

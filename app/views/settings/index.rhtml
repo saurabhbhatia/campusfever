@@ -1,0 +1,20 @@
+<table width="100%">
+<tr valign="top">
+<td>
+<%= render :partial => 'side_menu'%> 
+</td>   
+<td>
+
+<% form_for :user, :url => settings_path do |form| %>
+    <p>Description: <br/><%= form.text_area :description, :rows => 3 %></p>
+    <p>Location: <br/><%= form.text_field :location %></p>
+    <p>Email address: <br/><%= form.text_field :email %></p>
+    <p>First name: <br/><%= form.text_field :first_name %></p>
+    <p>Last name: <br/><%= form.text_field :first_name %></p>
+    <p>Country: <br/><%= form.country_select :country %></p>
+    <p>Postal code (for US, UK, Canada): <br/><%= form.text_field :postal_code %></p>
+    <p>Birthday: <br/><%= form.date_select :birth_day, :start_year => 1898, :order => [:day, :month, :year] %></p>
+    <p>Gender: <br/><%= form.select :gender, [["Guy", 1], ["Gal", 2], ["Male", 3], ["Female", 4], ["Transgender", 5], ["None of above", 0]] %></p>
+	<p><%= submit_tag "Save changes..."%></p>
+<% end %>
+</td>

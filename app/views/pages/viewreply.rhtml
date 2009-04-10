@@ -1,0 +1,38 @@
+<h1></h1>
+<html>
+<title></title>
+<body>
+<div id="container">
+<div id="header">
+<h5>
+<%= link_to "Home", :action => 'showforum', :id => @forum_clubid %>  
+</h5>
+</div>
+<div id="sidemenu">
+
+<img src="<%= url_for(:controller =>'pictures',:action => 'picture', :id => @forum.picture_id) %>" height=100 />
+<h4><font color='orange' ><b>Forum Name :<%= @forum.subject %></b></font></h4>
+<h4><font color='orange' ><b>Forum Description : <%= simple_format @forum.message %></b></font></h4>
+<h4><font color='orange'><b> Posts :(<%= @count %> )<b></font></h4>
+</div>
+<div id="content">
+<h3 align= "center"> <font color='orange' ><b>Posts </b></font></h3>
+
+<table align = "center">
+
+<th><b>Message  </b></th>
+<th><b>Description</b></th>
+
+<% for i in @post %>
+<tr><td><b> <%= i.message %> </b></td>
+<td><b><%= simple_format i.thought %> </b></td></tr>
+   <% end %><br>
+</table>
+<h4 align="center">
+<%= link_to "Reply", :action => 'givereply', :id => @forum_id %> 
+</h4>
+<%= yield %>
+</div>
+</div>
+</body>
+</html>

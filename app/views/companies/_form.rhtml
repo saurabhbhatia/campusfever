@@ -1,0 +1,11 @@
+<%= error_messages_for 'company' %>
+
+<!--[form:company]-->
+<center><h3>Welcome <%= @user.firstname %> <%= @user.lastname %> </h3></center>
+<center><h3>Here you Can create Company Which is not on the List</h3></center>
+
+
+<p><center><label for="company_c_name">Company Name</label><br/>
+<%= text_field 'company', 'c_name'  %></center></p>
+
+<!--[eoform:company]-->

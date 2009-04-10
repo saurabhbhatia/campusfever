@@ -1,0 +1,68 @@
+body {
+  margin-top: 0px;
+  padding: 0px;
+  background: #fff;
+  font-family: Arial, Helvetica, sans-serif;
+  position:absolute;
+  /*background: url(/images/Orleans.jpg);
+  background-repeat:no-repeat;
+  width: 0px, auto;
+  height: 500px;*/
+}
+
+#header {
+  /*background: #fff url(/images/x-grad.png);
+  height: 90px;
+  width: 1060px;
+  margin-left: 100px;
+  margin-top: 5px;
+  text-align: left;
+  padding-top: 1px;*/
+}
+
+#container {
+  /*position: absolute;
+  background-color: green;
+  min-width: 760px;
+  margin-top: 0px;
+  padding-top: 0px;*/
+  /*background: url(/images/Orleans.jpg);
+  background-repeat:no-repeat;
+  width: 0px, auto;
+  height: 700px;*/
+}
+
+#content {
+  position: absolute;
+  margin-top: 30px;
+  margin-left: 300px;
+  width: 500px;
+  height: 460px;
+  background-color: white;
+}
+
+#sidemenu {
+  position: absolute;
+  font-size: 80%;
+  float: left;
+  margin-left: 250px;
+  margin-top: 20px;
+  width: 100px;
+  padding: 0px;
+}
+#sidemenu ul {
+  list-style: none;
+  margin-left: 0px;
+  padding: 0px;
+  margin-left: -150%;
+}
+a { color: #b00; }
+a:hover { background-color: #b00; color: #eee; }
+#content { float: right; width: 650px; }
+th { background-color: #933; color: #fff; }
+tr.odd { background-color: #fcc; }
+tr.even { background-color: #ecc; }
+
+table#users { width: 100%;}
+table#users th { font-size: 95%; }
+table#users td { font-size: 90%; }

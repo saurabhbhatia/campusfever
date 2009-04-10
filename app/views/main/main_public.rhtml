@@ -1,0 +1,107 @@
+<table width="100%">
+<tr valign="top">
+
+<td width="25%">
+    <%#= render :partial => 'friend/friends', :object => @friends, :locals => { :faculty => @faculty } %>
+	
+	<% if (@faculty.privacy_friend == Faculty::PROFILE_ATTRIBUTE_PUBLIC) %>
+		<!-- Friends -->
+		<% if @friends && (@friends.size > 0) %>
+	        <h3><%= @faculty.name %>'s friends</h3>
+			<% for friend in @friends %>
+			   <%= link_to friend.name, main_path(friend.login) %><br/>
+		    <% end %>
+	    <% end %>
+		<!-- Fans -->
+	    <% if @fans && (@fans.size > 0) %>
+	        <h3><%= @faculty.name %>'s fans</h3>
+	        <% for fan in @fans %>
+	           <%= link_to fan.name, main_path(fan.login) %><br/>
+	        <% end %>
+	    <% end %>
+	    <% if @fans_of && (@fans_of.size > 0) %>
+	        <h3><%= @faculty.name %> is fan of</h3>
+	        <% for fan in @fans_of %>
+	           <%= link_to fan.name, main_path(fan.login) %><br/>
+	        <% end %>
+	    <% end %>
+	<% end %>
+	<!-- Other profiles -->
+	<% if ((@faculty.privacy_sn == Faculty::PROFILE_ATTRIBUTE_PUBLIC) && (@sns && (@sns.size > 0))) || 
+          ((@faculty.privacy_im == Faculty::PROFILE_ATTRIBUTE_PUBLIC) && (@ims && (@ims.size > 0))) ||
+          ((@faculty.privacy_web == Faculty::PROFILE_ATTRIBUTE_PUBLIC) && (@webs && (@webs.size > 0)))
+    %>
+	   <h3>Other profiles</h3>
+	   <% if (@faculty.privacy_sn == Faculty::PROFILE_ATTRIBUTE_PUBLIC) %>
+         <% for sn in @sns %>
+	       <%= sn.social_network.name %> (<%= sn.username %>)<br/>
+         <% end %>
+       <% end %>
+       <% if (@faculty.privacy_im == Faculty::PROFILE_ATTRIBUTE_PUBLIC) %>
+		 <% for im in @ims %>
+		   <%= im.im.name %>(<%= im.username %>)<br/>
+		 <% end %>
+       <% end %>
+       <% if (@faculty.privacy_web == Faculty::PROFILE_ATTRIBUTE_PUBLIC) %>
+         <% for web in @webs %>
+            <a href="<%= web.url %>"><%= web.label %></a><br/>
+         <% end %>
+       <% end %>
+    <% end %>
+
+</td>
+
+<td>
+  <div id="user_info">
+    <h2><%= @faculty.name %></h2>
+	<div style="float:right">
+		<%= @faculty.filename.nil? ? image_tag("/images/profile_photo.png") : image_tag(@faculty.public_filename) %>
+	</div>
+<p>
+	<%= "#{@faculty.dob}" if (@faculty.privacy_dob == Faculty::PROFILE_ATTRIBUTE_PUBLIC) %> 
+	<%= Faculty::GENDERS[@user.gender] if (@user.privacy_gender == User::PROFILE_ATTRIBUTE_PUBLIC) %>
+    <%= " Faculty Title #{@faculty.fac_title}" if (@faculty.privacy_fac_title == Faculty::PROFILE_ATTRIBUTE_PUBLIC) %> 
+</p>
+<p>
+	<%= @faculty.fac_department if (@faculty.privacy_fac_department == Faculty::PROFILE_ATTRIBUTE_PUBLIC) %>
+</p>
+  	  <% if logged_in? %>
+	  <p>
+		<%# A friend: can be unfriended. %>
+		<% if current_faculty.is_friends_with? @faculty %>
+		This user is your friend.
+	        <%= link_to "Unfriend?", 
+	            unfriend_friend_path(@faculty) %>
+	    <%# Your fan: can be accepted. %>
+	    <% elsif current_faculty.pending_friends_for_me.include? @faculty %>
+		   This user is your fan <br/>
+	        <%= link_to "Accept friend request", 
+	            accept_friend_path(@faculty)%>
+		<%# You are fan of: can be canceled. %>
+		<% elsif @faculty.pending_friends_for_me.include? current_faculty %>
+		    <%= link_to "Cancel friend request",
+	            cancel_friend_path(@faculty)%>
+	    <%# None: request friend %>
+	    <% else %>
+	        <%= link_to "Request friend", 
+	            request_friend_path(@faculty)%>
+	    <% end %>
+	   <% end %>
+	   </p>
+  </div>
+
+<hr size="2" style="clear: right"/>
+<% if @public_notes && (@public_notes.size > 0) %>
+<div id="note_list">
+	<%= render :partial => 'public_note_list', :object => @public_notes, :locals => { :faculty => @faculty } %>
+</div>
+<% else %>
+There's no public note.
+<% end %>
+
+</td>
+
+<td width="25%">
+</td>
+</tr>
+</table>

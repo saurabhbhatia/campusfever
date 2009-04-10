@@ -1,0 +1,8 @@
+<% for column in State.content_columns %>
+<p>
+  <b><%= column.human_name %>:</b> <%=h @state.send(column.name) %>
+</p>
+<% end %>
+
+<%= link_to 'Edit', :action => 'edit', :id => @state %> |
+<%= link_to 'Back', :action => 'list' %>

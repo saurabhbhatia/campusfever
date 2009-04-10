@@ -1,0 +1,7 @@
+<h2>New private group</h2>
+
+<% form_for :private_group do |f| %>
+  <p>Name: <%= f.text_field :name %></p>
+  <p>Description: <%= f.text_area :description, :rows => 5 %></p>
+  <p><%= submit_tag %></p>
+<% end %>

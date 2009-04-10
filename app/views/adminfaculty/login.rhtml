@@ -1,0 +1,22 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+       "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+  <title>Faculty Admin: <%= controller.action_name %></title>
+  <%= stylesheet_link_tag 'scaffold' %>
+</head>
+
+<body>
+<p style="color: red"><%= flash[:notice] %></p>
+
+<h2>Faculty Login</h2>
+<% form_for :faculty, :url => {:action => 'authenticate'} do |f| -%>
+  <p>Username(Your Email Address):<br /><%= f.text_field :email, :size => 30 %></p>
+  <p>Password:<br /><%= f.password_field :password, :size => 30 %></p>
+  <%= submit_tag 'Login' %>
+<% end %>
+
+</body>
+</html>

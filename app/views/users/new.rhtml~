@@ -1,0 +1,17 @@
+<html>
+  <head>
+     <%= javascript_include_tag "prototype" %>
+  </head>
+
+<body>
+<h1><center>New user</center></h1>
+
+<% form_tag :action => 'create' do %>
+  <%= render :partial => 'form' %>
+  <%= show_simple_captcha(:object=>"user") %>
+  <%= submit_tag "Create" %>
+<% end %>
+
+<%= link_to 'Back', :action => 'list' %>
+</body>
+</html>

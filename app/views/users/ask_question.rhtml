@@ -1,0 +1,21 @@
+<html>
+  <head>
+     <%= javascript_include_tag "prototype" %>
+  </head>
+
+<body>
+<h1><center>New Question</center></h1>
+
+   <%= error_messages_for 'question' %>
+
+<% form_tag :action => 'ask_question1', :id => @user, :fac_id => @faculty do %>
+
+<b><font color='green' > User Name :</font><%= @user.firstname %> <br>
+<b><font color='green' > Faculty Name :</font><%= @faculty.fac_displayname %> 
+<p><label for="question_question"><font color='green' ><b> Question :</b></font></label><br>
+<%= text_area 'question', 'question',   "cols" => 29, "rows" => 5 %></p>
+
+  <%= submit_tag "Send" %>
+<% end %>
+</body>
+</html>

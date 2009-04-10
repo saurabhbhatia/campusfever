@@ -1,0 +1,22 @@
+<html>
+  <head>
+     <%= javascript_include_tag "prototype" %>
+  </head>
+
+<body>
+<h2><center>Your Reply</center></h2>
+
+   <%= error_messages_for 'answer' %>
+
+<% form_tag :action => 'create', :id => @faculty, :questid => @question do %>
+
+<b><font color='green' >Faculty : </font></b> <%= @faculty.fac_displayname %> </p>
+<b><font color='green' >Question : </font></b> <%= @question.question %> </p>
+<b><font color='green' >Asked By : </font></b> <%= @user.firstname %> </p>
+<p><label for="answer_answer"><font color='green' ><b> Answer :</b></font></label><br>
+<%= text_area 'answer', 'answer',   "cols" => 29, "rows" => 5 %></p>
+
+  <%= submit_tag "Send" %>
+<% end %>
+</body>
+</html>

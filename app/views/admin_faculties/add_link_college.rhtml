@@ -1,0 +1,18 @@
+<HTML>
+  <HEAD>
+    <%= javascript_include_tag "prototype" %>
+  </HEAD>
+
+<BODY>
+<p>	<% @html = "<select id='college_id' name='college_id'>" %>
+	<%= @html += "<option value=''>No College</option>" %>
+	<% @colleges.each do |@colleges| %>
+	<%= @html = "<option value='#{@colleges.id}'>#{@colleges.college}</option>" %>
+	<% end %>
+	<%= @html = "</select>" %>
+</p>
+
+<p> If Your College is not on the List, Please Click <%= link_to "Here", :controller => 'colleges', :action => 'new', :id => @colleges.city_id %> here to Add Your College</p>
+
+</BODY>
+</HTML>

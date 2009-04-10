@@ -1,0 +1,22 @@
+<tr class="<%= cycle('odd', 'even') -%>">
+
+  <td align="center"><%= user.firstname -%></td>
+  <td align="center"><%= user.lastname -%></td>
+  <td align="center"><%= user.email -%></td>
+  <td align="center"><%= user.activate -%></td>
+  <td align="center"><%= user.pass_month_year -%></td>
+  <td align="center"><%= user.semester -%></td>
+  <td align="center"><%= user.created_at -%></td>
+  <td align="center"><%= user.blockflag -%></td>
+  <td align="center"><%= user.status ? 'yes' : 'no' -%>
+  <% unless user == logged_in_user -%>
+    <% if user.status -%>
+      [<%= link_to('disable', user_url(user.id), :method => :delete) %>]
+    <% else -%>
+      [<%= link_to('enable', user_url(user.id), :method => :put) %>]
+    <% end -%>
+  <% end -%>
+  </td>
+  <td>[<%= link_to 'edit permissions', :controller => 'roles', :action => 'index', :user_id => user %>]</td>
+
+</tr>

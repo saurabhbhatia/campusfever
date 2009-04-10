@@ -1,0 +1,50 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional/
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>RailsCoders</title>
+    <%= stylesheet_link_tag 'main' %>
+    <%= javascript_include_tag :defaults %>
+    <%= yield :head %>
+  </head>
+  <body>
+    <div id="container">
+      <div id="header">
+      </div>
+      <div id="sidemenu">
+<ul>
+  <li><%= link_to 'Home', index_url %></li>
+
+  <% if is_logged_in1? %>
+  <li>Logged in as: <i><%= logged_in_faculty.email %></i></li>
+
+  <% else %>
+  <li><%= link_to 'Signup', :controller => 'users', :action => 'new' %></li>
+  <li><%= link_to 'Login', :controller => 'account', :action => 'login' %></li>
+  <% end %>
+
+
+  <% if is_logged_in1? %>
+  <li><%= link_to "Update Your Profile", edit_faculty_path(logged_in_faculty) %></li>
+  <li><%= link_to "View Profile", :controller => 'users', :action => 'show', :id => logged_in_faculty  %></li>
+  <li><%= link_to "Play a Test", :controller => 'users', :action => 'play_test', :faculty_id => logged_in_faculty %></li>
+  <li><%= link_to "Create Article", :controller => 'articles', :action => 'new', :id => logged_in_faculty %></li>
+  <li><%= link_to "Logout", {:controller => 'adminfaculty', :action => 'logout'}, :method => :post %></li>
+
+  <% else %>
+    <li><%= link_to 'Signup', :controller => 'users', :action => 'new' %></li>
+    <li><%= link_to 'Login', :controller => 'account', :action => 'login' %></li>
+  <% end %>
+      </div>
+      <div id="content">
+         <% if flash[:notice] -%>
+           <div id="notice"><%= flash[:notice] %></div>
+         <% end -%>
+         <% if flash[:error] -%>
+           <div id="error"><%= flash[:error] %></div>
+         <% end -%>
+         <%= yield %>
+      </div>
+    </div>
+  </body>
+</html>

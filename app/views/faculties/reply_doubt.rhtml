@@ -1,0 +1,14 @@
+<html>
+<b><font color = 'green'>Doubt : </font></b><%= @doubt1.doubt %><br>
+
+<%= error_messages_for 'answerdoubt' %>
+
+<% form_tag :action => 'answer_doubt', :id => @faculty, :questid => @question, :doubtid => @doubtid do %>
+
+<p><label for="answerdoubt_answer"><font color='green' ><b> Answer :</b></font></label><br>
+<%= text_area 'answerdoubt', 'answer',   "cols" => 29, "rows" => 5 %></p>
+
+<%= submit_tag "Send" %>
+<% end %>
+
+</html>

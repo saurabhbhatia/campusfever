@@ -1,0 +1,2 @@
+class LinkNote < Note
+end

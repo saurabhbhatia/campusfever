@@ -1,0 +1,13 @@
+<html>
+<b><font color='green' >Question :  <%= @question.question %><br>
+ By : <%= @user.firstname %></font></b> </p>
+
+<b> <font color='green' >Answers : </font></b><br>
+<ol type =1 >
+<% for i in @answer %>
+<li><%= i.answer %><br>
+<b> Given by : </b> <%= @faculty.fac_displayname %>
+</li>
+<% end %>
+</ol>
+<b><%= link_to 'reply', :action =>'reply', :id => @faculty, :questid => @question %></b><br><br>

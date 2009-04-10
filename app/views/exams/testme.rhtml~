@@ -1,0 +1,201 @@
+<HTML>
+  <HEAD>
+<script>
+var hours=document.getElementById('HidHours').value;
+
+var minutes=document.getElementById('HidMinutes').value;
+
+var seconds=document.getElementById('HidSeconds').value;
+
+function display(){
+
+if (seconds<=0)
+ {
+    if((hours==0)&&(minutes==0))
+     seconds=0;
+    else
+    {
+     seconds=60;
+     minutes-=1;
+    }
+ }
+
+if (minutes<=0)
+ {
+    if((hours<0)&&(minutes<0))
+    {
+     hours = minutes = seconds = 0;
+    }
+    else
+    {
+     if((hours==0)&&(minutes==0))
+      hours=minutes=0;
+     if((hours>0)&&(minutes<0))
+     {
+      minutes=59;
+      hours-=1;
+     }
+    }
+ }
+
+if ((minutes<=-1)||(hours<=-1))
+ {
+    if(hours<=-1)
+    {
+     minutes=0;
+     hours+=1;
+    }
+    else
+    minutes-=1;
+    seconds=0;
+    minutes+=1;
+ }
+ else
+    if(seconds>0)
+    seconds-=1;
+    document.getElementById('counter').value=hours+":"+minutes+":"+seconds;
+    setTimeout("display()",1000);
+}
+display();
+
+</script>
+
+<script language="JavaScript">
+TargetDate = <%= @paper.timer.to_s %>
+BackColor = "palegreen";
+ForeColor = "navy";
+CountActive = true;
+CountStepper = -1;
+LeadingZero = true;
+DisplayFormat = "%%D%% Days, %%H%% Hours, %%M%% Minutes, %%S%% Seconds.";
+FinishMessage = "It is finally here!";
+</script>
+<script language="JavaScript" src="http://scripts.hashemian.com/js/countdown.js"></script>
+<script>
+function calcage(secs, num1, num2) {
+  s = ((Math.floor(secs/num1))%num2).toString();
+  if (LeadingZero && s.length < 2)
+    s = "0" + s;
+  return "<b>" + s + "</b>";
+}
+
+function CountBack(secs) {
+  if (secs < 0) {
+    document.getElementById("cntdwn").innerHTML = FinishMessage;
+    return;
+  }
+  DisplayStr = DisplayFormat.replace(/%%D%%/g, calcage(secs,86400,100000));
+  DisplayStr = DisplayStr.replace(/%%H%%/g, calcage(secs,3600,24));
+  DisplayStr = DisplayStr.replace(/%%M%%/g, calcage(secs,60,60));
+  DisplayStr = DisplayStr.replace(/%%S%%/g, calcage(secs,1,60));
+
+  document.getElementById("cntdwn").innerHTML = DisplayStr;
+  if (CountActive)
+    setTimeout("CountBack(" + (secs+CountStepper) + ")", SetTimeOutPeriod);
+}
+
+function putspan(backcolor, forecolor) {
+ document.write("<span id='cntdwn' style='background-color:" + backcolor + 
+                "; color:" + forecolor + "'></span>");
+}
+
+if (typeof(BackColor)=="undefined")
+  BackColor = "white";
+if (typeof(ForeColor)=="undefined")
+  ForeColor= "black";
+if (typeof(TargetDate)=="undefined")
+  TargetDate = <%= @paper.timer.to_s %>
+if (typeof(DisplayFormat)=="undefined")
+  DisplayFormat = "%%H%% Hours, %%M%% Minutes, %%S%% Seconds.";
+if (typeof(CountActive)=="undefined")
+  CountActive = true;
+if (typeof(FinishMessage)=="undefined")
+  FinishMessage = "";
+if (typeof(CountStepper)!="number")
+  CountStepper = -1;
+if (typeof(LeadingZero)=="undefined")
+  LeadingZero = true;
+
+
+CountStepper = Math.ceil(CountStepper);
+if (CountStepper == 0)
+  CountActive = false;
+var SetTimeOutPeriod = (Math.abs(CountStepper)-1)*1000 + 990;
+putspan(BackColor, ForeColor);
+var dthen = new Date(TargetDate);
+var dnow = new Date();
+if(CountStepper>0)
+  ddiff = new Date(dnow-dthen);
+else
+  ddiff = new Date(dthen-dnow);
+gsecs = Math.floor(ddiff.valueOf()/1000);
+CountBack(gsecs);
+</script>
+</HEAD>
+
+<BODY>
+<% form_tag ( :action => 'analysis', :user_id => @user, :id => @paper ) do %>
+
+<input type="text" readonly ="true"  size="8" id="counter" style="text-align:center; font-size:x-large; font-weight:bold; color:Red;" />
+
+<input type="hidden" size="8" id="HidHours" value="<%= @paper.timer.to_s.first(2) %>"/>
+
+<input type="hidden" size="8" id="HidMinutes" value="<%= @paper.timer.to_s.at(3) %><%= @paper.timer.to_s.at(4) %>"/>
+
+<input type="hidden" size="8" id="HidSeconds" value="<%= @paper.timer.to_s.last(2) %>"/>
+
+Hours Are: <%= @paper.timer.to_s.first(2) %>, Minutes Are: <%= @paper.timer.to_s.at(3) %><%= @paper.timer.to_s.at(4) %>, Seconds Are: <%= @paper.timer.to_s.last(2) %>
+ 
+<center>
+  <table border="1">
+   <tr>
+    <th>Company Name</th>
+    <th>Publishing Year</th>
+    <th>Exam Name</th>
+    <th>Exam Type</th>
+   </tr>
+
+   <tr>
+    <td><center><%= @paper.c_name %></center></td>
+    <td><center><%= @paper.c_year %></center></td>
+    <td><%= @paper.test_name %></td>
+    <td><%= @paper.exam_type %></td>
+   </tr>
+
+</table>
+</center>
+<BR />
+<% @item = 1 %>
+<% @radioname = 1 %>
+<% for keyword in @paper.exams %>
+<% if keyword.picture_id == nil %>
+<b></b>
+<% else %>
+<% @picture = Picture.find(:first, :conditions => ["id = ?", keyword.picture_id]) %>
+<img src="<%= url_for(:controller =>'pictures',:action => 'picture',:id => @picture.id) %>" height=100, width=500 />
+<% end %>
+<br />
+<% if keyword.instructions == nil %>
+  <b></b>
+<% else %>
+  <b>Instructions: <%= keyword.instructions %></b>
+<% end %>
+
+<br>
+Question <%= @item %>:&nbsp;&nbsp;&nbsp; <b><%= keyword.question %></b><br />
+<input type="radio" name=<%= 'opt' + @radioname.to_s %> value="option_a">A. &nbsp;&nbsp;&nbsp;<b><%= keyword.option_a %></b><br />
+<input type="radio" name=<%= 'opt' + @radioname.to_s %> value="option_b">B. &nbsp;&nbsp;&nbsp;<b><%= keyword.option_b %></b><br />
+<input type="radio" name=<%= 'opt' + @radioname.to_s %> value="option_c">C. &nbsp;&nbsp;&nbsp;<b><%= keyword.option_c %></b><br />
+<input type="radio" name=<%= 'opt' + @radioname.to_s %> value="option_d">D. &nbsp;&nbsp;&nbsp;<b><%= keyword.option_d %></b><br />
+<input type="radio" name=<%= 'opt' + @radioname.to_s %> value="option_e">E. &nbsp;&nbsp;&nbsp;<b><%= keyword.option_e %></b><br />
+<center>
+</p></center>
+<% @radioname = @radioname + 1 %>
+<% @item = @item + 1 %>
+
+<% end %>
+<br /><br />
+<h1 align="right"><%= submit_tag 'Show My Result' %></h1>
+<% end %>
+</BODY>
+</HTML>

@@ -1,0 +1,50 @@
+<h1>Editing exam</h1>
+
+<% form_tag (:action => 'show', :paper_id => @paper, :id => @exam, :userid => @user) do %>
+
+<center>
+  <table border="1">
+   <tr>
+    <th>Company Name</th>
+    <th>Publishing Year</th>
+    <th>Exam Name</th>
+    <th>Exam Type</th>
+   </tr>
+
+   <tr>
+    <td><center><%= @paper.c_name %></center></td>
+    <td><center><%= @paper.c_year %></center></td>
+    <td><%=  @paper.test_name %></td>
+    <td><%= @paper.exam_type %></td>
+   </tr>
+
+</table>
+</center>
+<br />
+
+<p><label for="exam_question">Question(Enter Your Question Below)</label><br/>
+<%= text_field 'exam', 'question' %></p>
+
+<p>Enter Your Possible Options below, Please Tick the Correct one also</p>
+
+<p><label for="exam_option_a">Option A</label><br/>
+<input type="radio" name="opt_1" value="option_a"><%= text_area 'exam', 'option_a', :rows => 3, :column => 15 %></p>
+
+<p><label for="exam_option_b">Option B</label><br/>
+<input type="radio" name="opt_1" value="option_b"><%= text_area 'exam', 'option_b', :rows => 3, :column => 15 %></p>
+
+<p><label for="exam_option_c">Option C</label><br/>
+<input type="radio" name="opt_1" value="option_c"><%= text_area 'exam', 'option_c', :rows => 3, :column => 15 %></p>
+
+<p><label for="exam_option_d">Option D</label><br/>
+<input type="radio" name="opt_1" value="option_d"><%= text_area 'exam', 'option_d', :rows => 3, :column => 15 %></p>
+
+<p><label for="exam_option_d">Option E(optional)</label><br/>
+<input type="radio" name="opt_1" value="option_e"><%= text_area 'exam', 'option_e', :rows => 3, :column => 15 %></p>
+
+<%= submit_tag 'Edit' %>
+
+<% end %>
+
+<%= link_to 'Show', :action => 'show', :id => @exam %> |
+<%= link_to 'Back', :action => 'list' %>

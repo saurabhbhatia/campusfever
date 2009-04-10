@@ -1,0 +1,7 @@
+<h1>Welcome Admin, here you can Create FACULTY Admin</h1>
+
+<% form_tag :action => 'thanks' do %>
+
+
+<%= submit_tag "Create" %>
+<% end %>

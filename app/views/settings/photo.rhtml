@@ -1,0 +1,33 @@
+<table width="100%">
+<tr valign="top">
+
+<td width="35%">
+<%= render :partial => 'side_menu'%> 
+</td>   
+
+<td>
+
+<table width="100%">
+<tr valign="top">
+<td width="70%">
+
+<h2>Change photo</h2>
+
+<% form_for(:user, :url => settings_path('photo'), 
+                   :html => { :multipart => true }) do |form| -%>
+    <p>Change photo: <br/><%= form.file_field :uploaded_data %></p>
+    <p><%= submit_tag "Save changes..."%></p>
+<% end %>
+
+</td>
+
+<td width="30%">
+<% if @user.filename %>	
+<%= image_tag @user.public_filename %>
+<% end %>	
+</td>
+</tr>
+</table>
+
+</td>
+</table>

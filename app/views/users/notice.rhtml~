@@ -1,0 +1,13 @@
+<h3> Welcome <%= @user.firstname %></h3>
+
+<% @counter = 1 %>
+<% @note_recipient = NoteRecipient.find(:all) %>
+<% for i in @note_recipient do %>
+	<% if i.branch_id.to_i == @user.branch.to_i %>
+		<% @note = Note.find(:all, :conditions => ["id = ?", i.note_id]) %>
+			<% for j in @note do %>
+				<center><%= @counter %>. <B>Type </B>: <%= j.type %>
+			<% end %>
+	<% @counter = @counter + 1 %>
+	<% end %>
+<% end %>

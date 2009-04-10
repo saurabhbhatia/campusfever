@@ -1,0 +1,16 @@
+<h1>New faculty</h1>
+
+<HTML>
+<HEAD>
+<TITLE>Faculty Login</TITLE>
+<%= javascript_include_tag "prototype" %>
+</SCRIPT>
+</HEAD>
+
+<BODY>
+<% form_tag :action => 'check' do %>
+<%= render :partial => 'form' %>
+<%= submit_tag "Create" %>
+<% end %>
+</BODY>
+</HTML>

@@ -1,0 +1,16 @@
+<HTML>
+  <HEAD>
+    <%= javascript_include_tag "prototype" %>
+  </HEAD>
+
+<BODY>
+<p>	<% @html = "<select id='year_id' name='year_id'>" %>
+	<%= @html += "<option value=''>No Year</option>" %>
+	<% @years.each do |@years| %>
+	<%= @html = "<option value='#{@years.id}'>#{@years.c_year}</option>" %>
+	<% end %>
+	<%= @html = "</select>" %>
+</p>
+
+</BODY>
+</HTML>

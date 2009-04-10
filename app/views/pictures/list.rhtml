@@ -1,0 +1,27 @@
+<h1>Listing pictures</h1>
+
+<table>
+  <tr>
+  <% for column in Picture.content_columns %>
+    <th><%= column.human_name %></th>
+  <% end %>
+  </tr>
+  
+<% for picture in @pictures %>
+  <tr>
+  <% for column in Picture.content_columns %>
+    <td><%=h picture.send(column.name) %></td>
+  <% end %>
+    <td><%= link_to 'Show', :action => 'show', :id => picture %></td>
+    <td><%= link_to 'Edit', :action => 'edit', :id => picture %></td>
+    <td><%= link_to 'Destroy', { :action => 'destroy', :id => picture }, :confirm => 'Are you sure?', :method => :post %></td>
+  </tr>
+<% end %>
+</table>
+
+<%= link_to 'Previous page', { :page => @picture_pages.current.previous } if @picture_pages.current.previous %>
+<%= link_to 'Next page', { :page => @picture_pages.current.next } if @picture_pages.current.next %> 
+
+<br />
+
+<%= link_to 'New picture', :action => 'new' %>

@@ -1,0 +1,20 @@
+<html>
+<b><font color ='green'>Given By : </font></b><%= @faculty.fac_displayname %><br><br>
+<% if @answer != nil %>
+<b><font color ='green'>Question : </font></b><%= @question.question %><br>
+<b><font color ='green'>Answer : </font></b><%= @answer.answer %><br>
+<% if @doubt != nil %>
+<% for i in @doubt %>
+<b><font color ='green'>Doubt : </font></b><%= i.doubt %><br>
+<% if i.answer != 'zero' %>
+<b><font color ='green'>Answer : </font></b><%= i.answer %><br>
+<% end %>
+<% end %>
+<% end %><br><br>
+
+<b><%= link_to 'ask doubts', :action =>'ask_doubt', :id => @user, :questid => @question %><br>
+<% else %>
+<b><font color ='green'>Question : </font></b><%= @question.question %><br>
+<b> No Answer !! </b><br>
+<% end %>
+<%= link_to 'back', :action => 'view_my_question', :id =>@user %>

@@ -1,0 +1,24 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+       "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+  <title>User: <%= controller.action_name %></title>
+  <%= stylesheet_link_tag 'main' %>
+</head>
+
+<body>
+<p style="color: green"><%= flash[:notice] %></p>
+
+<% form_for :user, :url => {:action => 'authenticate'} do |f| -%>
+
+<h2>User Login</h2>
+  <p>Email Id:<br /><%= f.text_field :email, :size => 30 %></p>
+  <p>Password:<br /><%= f.password_field :password, :size => 30 %></p>
+  <%= submit_tag 'Login' %>
+<% end %>
+<p>Faculty Members, Please Click <%= link_to "Here", :controller => 'adminfaculty',:action => 'login' %> to Login 
+
+</body>
+</html>

@@ -1,0 +1,64 @@
+<center><h1>Listing exams</h1></center>
+<center><h4><font color="green">Your Exam is Successfully Created <%= @user.firstname %> <%= @user.lastname %></font></h4></center>
+
+<center>
+  <table border="1">
+   <tr>
+    <th>Company Name</th>
+    <th>Publishing Year</th>
+    <th>Exam Name</th>
+    <th>Exam Type</th>
+   </tr>
+
+   <tr>
+    <td><center><%= @paper.c_name %></center></td>
+    <td><center><%= @paper.c_year %></center></td>
+    <td><%=  @paper.test_name %></td>
+    <td><%= @paper.exam_type %></td>
+   </tr>
+
+</table>
+</center>
+
+<% if @paper.exams.empty? %>
+    (None)<p>
+<% else %>
+  <% for keyword in @paper.exams %>
+
+Your Question is:&nbsp;&nbsp;&nbsp; <b><%= keyword.question %></b><br />
+Option A. &nbsp;&nbsp;&nbsp;<b><%= keyword.option_a %></b><br />
+Option B. &nbsp;&nbsp;&nbsp;<b><%= keyword.option_b %></b><br />
+Option C. &nbsp;&nbsp;&nbsp;<b><%= keyword.option_c %></b><br />
+Option D. &nbsp;&nbsp;&nbsp;<b><%= keyword.option_d %></b><br />
+Option E. &nbsp;&nbsp;&nbsp;<b><%= keyword.option_e %></b><br />
+Your Ans. &nbsp;&nbsp;&nbsp;</b><%= keyword.answer %></b><br />
+<center>
+<p><%= link_to "Edit", { :action => 'edit', :paper_id => @paper, :id => keyword, :userid => @user } %> |
+   <%= link_to "Destroy", { :action => 'destroy', :paper_id => @paper, :id => keyword, :userid => @user }, :confirm => 'Are you sure?', :method => :post %>
+</p></center>
+
+  <% end %>
+<% end %>
+
+<br />
+
+<center>
+<%= link_to 'Add More Questions', :action => 'new', :id => @paper, :user_id=> @user %> <br /><br />
+
+<% form_tag ( :action => 'finish_exam', :user_id => @user, :id => @paper ) do %>
+
+<center><p>If you are going to finish your Exam, Please Select the Timer:</p>
+
+<p>Timer<br/>
+<%= time_select 'paper', 'timer' %></p>
+
+<p>Enter a Brief Introduction about your Exam (Optional)<br />
+<%= text_area 'paper', 'introduction', :rows => 3, :column => 15 %></p>
+<br />
+
+<input type="radio" name="type1" value="publish"> Publish Now
+<input type="radio" name="type1" value="save"> Publish Later/Save
+<br /><br />
+<%= submit_tag "Finish" %>
+</center>
+<% end %>

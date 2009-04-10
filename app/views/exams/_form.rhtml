@@ -1,0 +1,39 @@
+<%= error_messages_for 'exam' %>
+
+
+<table id="exams" border=1>
+<tr>
+   <th>Company Name</th>
+   <th>Published Year</th>
+   <th>Exam Name:</th>
+   <th>Exam Type</th>
+</tr>
+<%= render :partial => 'exam' %>
+</table>
+
+<p>Thank You <%= @user.firstname %> <%= @user.lastname %> for completing the first step, Please write Question and answers here </p>
+
+<p><label for="exam_instructions">Add Question Specific Instruction</label><br/>
+<%= text_field 'exam', 'instructions' %> <b><%= link_to 'Attach Image?', :controller =>'pictures', :action => 'newpic', :id => @paper, :user_id => @user %></b></p>
+
+<p><label for="exam_question">Question(Enter Your Question Below)</label><br/>
+<%= text_field 'exam', 'question' %></p>
+
+<p>Enter Your Possible Options below, Please Tick the Correct one also</p>
+
+<p><label for="exam_option_a">Option A</label><br/>
+<input type="radio" name="opt_1" value="option_a"><%= text_area 'exam', 'option_a', :rows => 3, :column => 15 %></p>
+
+<p><label for="exam_option_b">Option B</label><br/>
+<input type="radio" name="opt_1" value="option_b"><%= text_area 'exam', 'option_b', :rows => 3, :column => 15 %></p>
+
+<p><label for="exam_option_c">Option C</label><br/>
+<input type="radio" name="opt_1" value="option_c"><%= text_area 'exam', 'option_c', :rows => 3, :column => 15 %></p>
+
+<p><label for="exam_option_d">Option D</label><br/>
+<input type="radio" name="opt_1" value="option_d"><%= text_area 'exam', 'option_d', :rows => 3, :column => 15 %></p>
+
+<p><label for="exam_option_d">Option E(optional)</label><br/>
+<input type="radio" name="opt_1" value="option_e"><%= text_area 'exam', 'option_e', :rows => 3, :column => 15 %></p>
+
+<!--[eoform:exam]-->

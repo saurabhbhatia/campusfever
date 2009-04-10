@@ -1,0 +1,30 @@
+<html>
+<h3><font color='orange'>create a new forum </font></h3>
+  
+<div class="depot-form" >
+
+<%= error_messages_for 'forum'%>
+
+
+<% form_tag ({:action => 'showforum', :id => @club.id}) do %>    
+
+  
+<h4> community name:  <%= @club.name %> </h4> 
+
+
+ <h4> user name:</h4>
+ 
+<p><label for="forum_subject">subject</label><br/>
+<%= text_field 'forum', 'subject'    %></p>
+
+
+<p><label for="forum_message">message</label><br/>
+<%= text_area 'forum', 'message', "cols" => 30, "rows" => 10 %></p>
+
+<%= submit_tag "Add" , :class => "submit" %>
+
+<% end %>
+
+
+</div>
+</html>

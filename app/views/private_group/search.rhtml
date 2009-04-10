@@ -1,0 +1,16 @@
+<h2>Search group</h2>
+<div id="search_form">
+      <% form_tag(:action => 'search') do %>
+        <%= text_field_tag :search %>
+        <%= submit_tag "Search group..." %>
+    <% end %>
+</div>
+
+<% if @private_groups %>
+<hr/>
+<div id="search_result">
+<% for group in @private_groups %>
+  <%= link_to group.name, private_group_path('view',group) %><br/>
+<% end %>
+</div>  
+<% end %>

@@ -1,0 +1,47 @@
+<% @note_list = Note.find(:all) %>
+<% for note_item in @note_list %>
+<div id="note_<%= note_item.id %>">
+	<% if note_item.is_public? then note_info = 'public' end %>
+	<% if note_item.is_private? then note_info = 'public' end %>
+	<% if note_item.is_private? && (note_item.sender != faculty) then note_info = 'private to you' end %>
+
+	<% if note_item.recipients && (note_item.recipients.size > 0) %>
+		<% note_info = note_item.recipients.size.to_s + " recipients."%>
+	<% end %>
+
+	<p><%= note_info %></p>
+	<div><div id="note_<%= note_item.id %>">
+
+	<%= note_item.note %>
+	<% if (note_item.class.to_s == "LinkNote") %>
+	<br />
+	<a href="<%= note_item.link %>"><%= note_item.link %></a>
+	<% end %>
+	<% if (note_item.class.to_s == "EventNote") %>
+	<br />
+		What: <%= note_item.event_title %><br />
+		Where: <%= note_item.event_location %><br />
+		When: <%= note_item.event_time %><br />
+	<% end %>
+	<% if (note_item.class.to_s == "FileNote") %>
+	<br />
+	<a href="<%= note_item.public_filename %>"><%= note_item.filename %></a>
+	<% end %>
+	</div>
+	
+<div>
+	<%= note_item.created_at.to_date.to_s(:long) %> | 
+ 
+	<%= link_to 'Reply', reply_note_path(note_item) %> |
+        <% unless note_item.reply_to %>
+		<%= link_to 'Forward', forward_note_path(note_item) %> |
+        <% end %>
+	<% if note_item.sender = faculty %>
+		<%= link_to_remote 'x',
+		:url => delete_note_path(note_item),
+		:confirm => 'Are you sure to delete note?' %> 
+	<% end %>
+</div>
+<% end %>
+<hr size="1"/>
+</div>

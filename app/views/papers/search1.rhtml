@@ -1,0 +1,36 @@
+<h5>
+<%= link_to 'Home', :action => 'index' %></h5>
+<h1 align ="center">Listing of Exams</h1>
+
+<% if @search2.empty? %>
+  <h3><font color = red> not found!</font></h3>
+<% else %>
+<% for i in @search2 %>
+<center>
+<table>
+  <tr>
+  <th> Company Name</th>
+  <th> Publishing Year </th>
+  <th> Exam Name </th>
+  <th> Exam Type </th>
+  <th> Created By </th>
+  <th> Play Option </th>
+  </tr>
+
+  <tr>
+  <td><font color='green'><%= i.c_name %></font></td>
+  <td><font color='green'><%= i.c_year %></font></td>
+  <td><font color='green'><%= i.test_name %></font></td>
+  <td><font color='green'><%= i.exam_type %></font></td>
+  <td><font color='green'></font></td>
+  <td><font color='green'><%= link_to 'Play Now', { :controller => 'exams', :action => 'play', :id => i.id, :user_id => @user }, :confirm => 'Are you sure want to play this test?', :method => :post %></font></td>
+  </tr>
+
+</table>
+</center>
+<% end %><br>
+
+<h5 align ="bottom">
+<%= link_to 'back', :action=>'play_test', :id => @user_id %><br>
+</h5>
+<% end %>

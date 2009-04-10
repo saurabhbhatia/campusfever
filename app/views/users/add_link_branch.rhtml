@@ -1,0 +1,16 @@
+<HTML>
+  <HEAD>
+    <%= javascript_include_tag "prototype" %>
+  </HEAD>
+
+<BODY>
+<p>	<% @html = "<select id='branch_id' name='branch_id'>" %>
+	<%= @html += "<option value=''>No Branch</option>" %>
+	<% @branches.each do |@branches| %>
+	<%= @html = "<option value='#{@branches.id}'>#{@branches.branch}</option>" %>
+	<% end %>
+	<%= @html = "</select>" %>
+</p>
+
+</BODY>
+</HTML>

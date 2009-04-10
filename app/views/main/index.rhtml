@@ -1,0 +1,44 @@
+<html>
+<head>
+<title><%= @page_title || "Campus Fever" %></title>
+<%= stylesheet_link_tag 'main' %>
+<%= javascript_include_tag :defaults %>
+</head>
+<body>
+
+<h1><%= link_to "Campusfever", :controller => 'main' %></h1>
+
+<%= error_messages_for :faculty %>
+
+<% form_tag :controller => 'account', :action => 'login' do -%>
+<p><label for="login">Login</label><br/>
+<%= text_field_tag 'login' %></p>
+
+<p><label for="password">Password</label><br/>
+<%= password_field_tag 'password' %></p>
+
+<!-- Uncomment this if you want this functionality
+<p><label for="remember_me">Remember me:</label>
+<%= check_box_tag 'remember_me' %></p>
+-->
+
+    <p>
+	or use:
+    </p>
+
+    <p>
+      <label for="openid_url">OpenID:</label>
+      <%= text_field_tag "openid_url" %>
+    </p>
+
+    <p>
+      <%= submit_tag 'Sign in' %>
+    </p>
+
+<% end -%>
+
+<p>Not a user yet? Please 
+<%= link_to 'register', :controller => 'account', :action => 'signup' %>
+</p>
+</body>
+</html>

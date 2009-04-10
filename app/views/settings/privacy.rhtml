@@ -1,0 +1,67 @@
+<table width="100%">
+<tr valign="top">
+<td>
+<%= render :partial => 'side_menu'%> 
+</td>   
+<td>
+
+<h2>Privacy</h2>
+<p>
+These settings control what is shown on your public profile page. 
+You can choose to hide some of your information from the public.	
+</p>
+<% form_for :user, :url => settings_path do |form| %>
+    <p>Change photo: <br/><%= form.text_field :location %></p>
+	<fieldset><legend>Email address</legend>
+		<%= form.radio_button :privacy_email, 0 %>nobody&nbsp;&nbsp;
+        <%= form.radio_button :privacy_email, 1 %>friends only&nbsp;&nbsp;
+        <%= form.radio_button :privacy_email, 2 %>everybody
+	</fieldset>
+    <fieldset><legend>Profile blurb</legend>
+        <%= form.radio_button :privacy_profile, 0 %>nobody&nbsp;&nbsp;
+        <%= form.radio_button :privacy_profile, 1 %>friends only&nbsp;&nbsp;
+        <%= form.radio_button :privacy_profile, 2 %>everybody
+    </fieldset>
+    <fieldset><legend>Location</legend>
+        <%= form.radio_button :privacy_location, 0 %>nobody&nbsp;&nbsp;
+        <%= form.radio_button :privacy_location, 1 %>friends only&nbsp;&nbsp;
+        <%= form.radio_button :privacy_location, 2 %>everybody
+    </fieldset>
+    <fieldset><legend>Country</legend>
+        <%= form.radio_button :privacy_country, 0 %>nobody&nbsp;&nbsp;
+        <%= form.radio_button :privacy_country, 1 %>friends only&nbsp;&nbsp;
+        <%= form.radio_button :privacy_country, 2 %>everybody
+    </fieldset>
+    <fieldset><legend>Age</legend>
+        <%= form.radio_button :privacy_age, 0 %>nobody&nbsp;&nbsp;
+        <%= form.radio_button :privacy_age, 1 %>friends only&nbsp;&nbsp;
+        <%= form.radio_button :privacy_age, 2 %>everybody
+    </fieldset>
+    <fieldset><legend>Gender</legend>
+        <%= form.radio_button :privacy_gender, 0 %>nobody&nbsp;&nbsp;
+        <%= form.radio_button :privacy_gender, 1 %>friends only&nbsp;&nbsp;
+        <%= form.radio_button :privacy_gender, 2 %>everybody
+    </fieldset>
+    <fieldset><legend>Friends</legend>
+        <%= form.radio_button :privacy_friend, 0 %>nobody&nbsp;&nbsp;
+        <%= form.radio_button :privacy_friend, 1 %>friends only&nbsp;&nbsp;
+        <%= form.radio_button :privacy_friend, 2 %>everybody
+    </fieldset>
+    <fieldset><legend>Social Network Profiles</legend>
+        <%= form.radio_button :privacy_sn, 0 %>nobody&nbsp;&nbsp;
+        <%= form.radio_button :privacy_sn, 1 %>friends only&nbsp;&nbsp;
+        <%= form.radio_button :privacy_sn, 2 %>everybody
+    </fieldset>
+    <fieldset><legend>Instant Messagenger Profiles</legend>
+        <%= form.radio_button :privacy_im, 0 %>nobody&nbsp;&nbsp;
+        <%= form.radio_button :privacy_im, 1 %>friends only&nbsp;&nbsp;
+        <%= form.radio_button :privacy_im, 2 %>everybody
+    </fieldset>
+    <fieldset><legend>Website Profiles</legend>
+        <%= form.radio_button :privacy_web, 0 %>nobody&nbsp;&nbsp;
+        <%= form.radio_button :privacy_web, 1 %>friends only&nbsp;&nbsp;
+        <%= form.radio_button :privacy_web, 2 %>everybody
+    </fieldset>
+    <p><%= submit_tag "Save changes..."%></p>
+<% end %>
+</td>

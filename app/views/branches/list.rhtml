@@ -1,0 +1,27 @@
+<h1>Listing branches</h1>
+
+<table>
+  <tr>
+  <% for column in Branch.content_columns %>
+    <th><%= column.human_name %></th>
+  <% end %>
+  </tr>
+  
+<% for branch in @branches %>
+  <tr>
+  <% for column in Branch.content_columns %>
+    <td><%=h branch.send(column.name) %></td>
+  <% end %>
+    <td><%= link_to 'Show', :action => 'show', :id => branch %></td>
+    <td><%= link_to 'Edit', :action => 'edit', :id => branch %></td>
+    <td><%= link_to 'Destroy', { :action => 'destroy', :id => branch }, :confirm => 'Are you sure?', :method => :post %></td>
+  </tr>
+<% end %>
+</table>
+
+<%= link_to 'Previous page', { :page => @branch_pages.current.previous } if @branch_pages.current.previous %>
+<%= link_to 'Next page', { :page => @branch_pages.current.next } if @branch_pages.current.next %> 
+
+<br />
+
+<%= link_to 'New branch', :action => 'new' %>

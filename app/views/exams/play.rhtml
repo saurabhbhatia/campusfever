@@ -1,0 +1,35 @@
+<% form_tag ( :controller => 'exams', :action => 'testme', :user_id => @user, :id => @paper ) do %>
+
+<h3><font color="green"><center> Hello, <%= @user.firstname %> <%= @user.lastname %>, you are about to give a test of the following details : </center></font></h3>
+
+<center>
+<table border="1">
+  <tr>
+  <th> Company Name</th>
+  <th> Publishing Year </th>
+  <th> Exam Name </th>
+  <th> Exam Type </th>
+  <th> Time Duration </th>
+  <tr>
+
+  <tr>
+   <td align="center"><%= @paper.c_name %></td>
+   <td align="center"><%= @paper.c_year %></td>
+   <td align="center"><%= @paper.test_name %></td>
+   <td align="center"><%= @paper.exam_type %></td>
+   <td align="center"><%= @paper.timer %></td>
+  </tr>
+</table>
+</center>
+
+<p>Please follow the Instructions given before the questions, and if there is any Image, Please follow the Image, and be careful, that upto which question you have to follow that Image</p>
+
+<p><b>Note:</b> Your Exam has a Fixed time, You have to finish that Exam before the time period. For Your Convinence there is a Watch which Starts when your Exam Starts, So Please be careful about the time.</p>
+
+<p>If you are ready Click on Yes, I'm Ready, else you can go <%= link_to 'Back', :controller => 'papers', :action => 'play_test' %> to select more test</p>
+
+<p>Wish You all the Best</p>
+
+<h6 align="right"><%= submit_tag "Yes I'm Ready" %></h6>
+
+<% end %>

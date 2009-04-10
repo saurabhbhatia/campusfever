@@ -1,0 +1,18 @@
+<h1>Welcome Admin, here you can Create FACULTY Admin</h1>
+
+<% form_tag :action => 'thanks' do %>
+
+<p><label for="faculty_email">Faculty Email</label><br/>
+<%= text_field 'faculty', 'email'  %></p>
+
+<p><label for="faculty_password">Passowrd:</label><br/>
+<%= password_field 'faculty', 'password' %></p>
+
+<p><label for="faculty_password_confirmation">Password Confirmation:</label><br/>
+<%= password_field 'faculty', 'password_confirmation' %></p>
+
+<p><label for="faculty_fac_displayname">Faculty Display Name</label><br/>
+<%= text_field 'faculty', 'fac_displayname'  %></p>
+
+<%= submit_tag "Create" %>
+<% end %>

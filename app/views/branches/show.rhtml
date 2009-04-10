@@ -1,0 +1,8 @@
+<% for column in Branch.content_columns %>
+<p>
+  <b><%= column.human_name %>:</b> <%=h @branch.send(column.name) %>
+</p>
+<% end %>
+
+<%= link_to 'Edit', :action => 'edit', :id => @branch %> |
+<%= link_to 'Back', :action => 'list' %>

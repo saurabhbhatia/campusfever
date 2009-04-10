@@ -1,0 +1,29 @@
+<html>
+<body>
+<div id="container">
+<div id="header">
+<strong><%= link_to 'Home' , :action=>'show1', :id => @club_id %></strong></div>
+<div id="sidemenu">
+<h4><%= @club.name %>
+<img src="<%= url_for(:controller =>'pictures',:action => 'picture', :id => @club.picture_id) %>" height=100 />
+</div>
+<div id="content">
+<h4 align="center"><font color="orange">list of topics</font></h4>
+<table align="center">
+<th>  Forums  </th>
+<th> created at </th>
+<th> posts </th>
+<tr><% for i in @forum %>
+<td><%= link_to i.subject , :action => 'viewreply', :id => i.id %></td>
+<td><%= i.created_at %></td>
+<tr>
+
+<% end %></h4>
+</table>
+</div>
+</div>
+</body>
+</html>
+
+
+          

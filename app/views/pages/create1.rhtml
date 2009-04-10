@@ -1,0 +1,9 @@
+<h1> </h1>
+<div class="depot-form" >
+<%= error_messages_for 'category' %>
+<% form_tag :action => 'category' do %>    
+<p><label for="category_category">category</label><br/>
+<%= text_field 'category', 'category'  %> 
+<%= submit_tag "create" , :class => "submit" %></p>
+<% end %>
+</div>

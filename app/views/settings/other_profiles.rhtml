@@ -1,0 +1,56 @@
+<table width="100%">
+<tr valign="top">
+<td width="25%">
+<%= render :partial => 'side_menu'%> 
+</td>   
+
+<td width="55%">
+
+<h2>Other Profiles</h2>
+Link to your other profiles and let your Pownce friends know where else you are online. 
+You can control who sees your other profiles by changing your privacy settings.
+
+<% form_tag settings_path('add_sn') do |form| %>
+    <fieldset><legend>Social Network</legend>
+    <p>Social network: <br/>
+        <%= select :sn_membership, :social_network_id, 
+            SocialNetwork.find(:all).collect {|s| [s.name, s.id]} %></p>
+        <p>Username/ID: <br/><%= text_field :sn_membership, :username %></p>
+    <p><%= submit_tag "Add"%></p>
+    </fieldset>
+<% end %>
+
+<% form_tag settings_path('add_im') do |form| %>
+    <fieldset><legend>Instant Messenger</legend>
+        <%= select :im_membership, :im_id, 
+            Im.find(:all).collect {|s| [s.name, s.id]} %></p>
+        <p>Username/ID: <br/><%= text_field :im_membership, :username %></p>
+    <p><%= submit_tag "Add"%></p>
+    </fieldset>
+<% end %>
+
+<% form_tag settings_path('add_web') do |form| %>
+    <fieldset><legend>Personal website</legend>
+    <p>Label: <br/><%= text_field :web, :label %></p>
+    <p>URL: <br/><%= text_field :web, :url %></p>
+    <p><%= submit_tag "Add..."%></p>
+    </fieldset>
+<% end %>
+</td>
+
+<td>
+	<h3>Other profiles</h3>
+	<% for sn in @sns %>
+	   <%= sn.social_network.name %> (<%= sn.username %>)
+	   <%= link_to 'x', settings_path('delete_sn', sn.id) %>
+	   <br/>
+	<% end %>
+    <% for im in @ims %>
+       <%= im.im.name %>(<%= im.username %>)
+       <%= link_to 'x', settings_path('delete_im', im.id) %> <br/>
+    <% end %>
+    <% for web in @webs %>
+       <a href="<%= web.url %>"><%= web.label %></a>
+       <%= link_to 'x', settings_path('delete_web', web.id) %> <br/>
+    <% end %>
+</td>

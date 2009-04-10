@@ -1,0 +1,16 @@
+<h2>Create Article for <%= @faculty.fac_displayname %></h2>
+
+<% form_tag (:action => 'create', :html => { :method => :post }, :id => @faculty) do %>
+
+<p>
+<p><label for="article_title">Title</label><br/><%= text_field 'article', 'title', :size => 60 %></p>
+<p><label for="article_synopsis">Synopsis</label><br/><%= text_area 'article', 'synopsis', :rows => 3, :cols => 60 %></p>
+<p><label for="article_body">Body</label><br/><%= text_area 'article', 'body', :rows => 20, :cols => 60 %></p>
+<p>Category:<br />
+<% @choices = Content.find(:all) %>
+<%= select_tag('category',
+options_from_collection_for_select(@choices, :id, :category)) %>
+<p>Published? <input type="checkbox" name="published" value="published"></p>
+<%= submit_tag 'Save' %> or <%= link_to 'cancel' %>
+
+<% end -%>

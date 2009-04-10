@@ -1,0 +1,8 @@
+<html>
+
+<h3> List of Faculties </h3>
+<ol type=1>
+<% for i in @faculties %>
+<li><%= i.fac_displayname %>
+<%= link_to 'view_profile',:controller =>'faculties', :action =>'view_profile', :id => i.id, :userid => @user %></li>
+<% end %>

@@ -1,0 +1,20 @@
+<center>
+
+<h2>Hello: <%= @user.firstname %> <%= @user.lastname %></h2>
+
+<h4> Your Primary Email Address is :<%= @user.email %> </h4>
+
+</center>
+
+<h4> Your Passing Month and Year is : <%= @user.pass_month_year %></h4>
+
+<h4> Your Current Semester is : <%= @user.semester %></h4>
+
+<h4> Your City and State is : <%= @user.state %>, <%= @user.city %></h4>
+
+<h4> Your College and Course is : <%= @user.college %>, <%= @user.course %></h4>
+
+<h4> Your Branch is : <%= @user.branch %></h4>
+
+<p>Click <%= link_to "Here", edit_user_path(logged_in_user) %> to Edit Your Profile Details |
+Click <%= link_to "Here", :action => 'play_test' %> to Give a Test 

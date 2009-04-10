@@ -1,0 +1,24 @@
+<div id="faculty_<%= search_result_item.id %>">
+<p>
+<%= link_to search_result_item.fac_displayname, 
+    main_path(search_result_item.login) %><br/>
+User name: <%= search_result_item.login %>
+</p>
+<p>
+<%= search_result_item.description %>
+</p>
+<% if current_faculty.is_friends_with? search_result_item %>
+<%= search_result_item.fac_displayname %> is already your friend.
+<% else %>
+    <% if current_faculty.pending_friends_for_me.include?(search_result_item) %>
+	   This user is your fan. <br/>
+        <%#= link_to_remote "Accept", :url => request_friend_path(search_result_item)%>
+        Please go to user <%= link_to "profile page", main_path(search_result_item.login) %> to accept friend request.
+	<% else %>
+		<%#= link_to_remote "Add friend", :url => request_friend_path(search_result_item)%>
+		Please go to user <%= link_to "profile page", main_path(search_result_item.login) %> to make friend.
+    <% end %>
+
+<% end %>
+<hr/>
+</div>

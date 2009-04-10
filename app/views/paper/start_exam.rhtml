@@ -1,0 +1,41 @@
+<h1>New exam</h1>
+
+<% form_tag :action => 'new'  do %>
+
+<% @choices = Company.find(:all) %>
+<p>  Select your company name from list : 
+<%= select_tag('c_name',
+options_from_collection_for_select(@choices, :c_name, :c_name)) %>
+</p>
+
+<p>If Your Company is not on the list, Please Click <%= link_to 'Here', :controller => 'companies', :action => 'new' %></p>
+
+<p> Select year from the list :
+ <select name="c_year">
+   <option></option>
+   <option value="" selected="selected">Year</option>
+   <option value="2008">2008</option>
+   <option value="2007">2007</option>
+   <option value="2006">2006</option>
+   <option value="2005">2005</option>
+   <option value="2004">2004</option>
+   <option value="2003">2003</option>
+   <option value="2002">2002</option>
+   <option value="2001">2001</option>
+   <option value="2000">2000</option>
+ </select>
+</p>
+
+<p><label for="paper_test_name">Your Exam Name :</label><br/>
+<%= text_field 'paper', 'test_name', :size => 15 %>
+Note: Exam Name Must be Unique</p>
+
+<p> Exam Type : <br />
+<input type="radio" name="exam_type" value="Company(Campus)">Company(Campus) <br />
+<input type="radio" name="exam_type" value="MBA Enterance">MBA Enterance <br />
+<input type="radio" name="exam_type" value="Certifications">Certifications <br />
+<input type="radio" name="exam_type" value="Public Sectors">Public Sectors <br />
+<input type="radio" name="exam_type" value="Others">Others</p>
+
+<%= submit_tag "Save" %>
+<% end %>

@@ -1,0 +1,6 @@
+<h1><center>New company</center></h1>
+
+<% form_tag (:action => 'create', :id => @user) do %>
+  <%= render :partial => 'form' %><br />
+  <center><%= submit_tag "Create Company" %></center>
+<% end %>

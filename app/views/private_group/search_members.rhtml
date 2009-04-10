@@ -1,0 +1,20 @@
+<h2>Search member for group <%= @private_group.name %></h2>
+
+<div id="search_form">
+      <% form_tag(:action => 'search_members') do %>
+        <%= text_field_tag :search %>
+        <%= submit_tag "Search" %>
+    <% end %>
+</div>
+
+<% if @candidates %>
+<hr/>
+<div id="search_result">
+<% for candidate in @candidates %>
+  <%= candidate.fac_displayname %>
+  <% unless (@private_group.is_member? candidate) or (@private_group.is_author? candidate) %>
+  <%= link_to 'Invite', private_group_path(:action => 'invite', :id => @private_group, :candidate_id => candidate ) %>
+  <% end %><br/>
+<% end %>
+</div>  
+<% end %>

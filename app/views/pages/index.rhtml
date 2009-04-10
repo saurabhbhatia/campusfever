@@ -1,0 +1,43 @@
+<h1 align="center"><font color='orange'><Marquee  > List Of clubs & categories </Marquee> </font></h1>   
+<h1 align="right">
+<div class="depot-form" >
+<% form_tag ({:action => 'search', :id => @search_id}) do %>    
+
+<%= text_field 'search', 'search'  %> 
+ <%= submit_tag "search clubs" , :class => "search" %>
+<% end %>
+
+</div>
+</h1>
+<h3 align ="left"><u><font color='orange'> List of Clubs</font></u></h3>
+<% for i in @clubs %>
+<li><%= link_to "[X]" , { # link_to options
+                               :action => 'delete_club',
+                               :id => i.id},
+                             { # html options
+                               :method => :post,
+                               :confirm => "Really delete #{i.name}?"
+                             } %>
+
+<b><%= link_to i.name, :action =>'show1',:id => i.id %></b><br>
+
+<% end %>
+</table>
+<hr>
+<%= pagination_links(@club_pages) %>
+</hr>
+
+<h1 align ="center">
+<h3><u><font color='orange'> List of Categories</font></u></h3>
+<% for i in @categories %>
+<b><%= link_to i.category, :action =>'display1',:id => i.id %></b><br>
+<% end %>
+</table>
+
+<hr>
+<%= pagination_links(@category_pages) %>
+
+</hr>
+<%= link_to 'create category', :action=>'create1' %>
+
+</h1>

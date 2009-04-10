@@ -1,0 +1,20 @@
+development:
+  adapter: mysql
+  database: fever_development
+  username: root
+  password: Pandey
+  socket: /var/run/mysqld/mysqld.sock
+
+test:
+  adapter: mysql
+  database: fever_test
+  username: root
+  password: Pandey
+  socket: /var/run/mysqld/mysqld.sock
+
+production:
+  adapter: mysql
+  database: fever_production
+  username: root
+  password: Pandey
+  socket: /var/run/mysqld/mysqld.sock

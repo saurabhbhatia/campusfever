@@ -1,0 +1,15 @@
+<h2> All Guru </h2>
+
+<table id="faculties">
+<tr>
+  <th>Faculty Name</th>
+  <th>Faculty Email</th>
+  <th>Faculty Title</th>
+  <th>Department</th>
+  <th>Faculty's DOB</th>
+  <th>Enabled?</th>
+  <th>Faculty Roles</th>
+</tr>
+
+<% render :partial => 'faculty', :collection => @faculties %>
+</table>

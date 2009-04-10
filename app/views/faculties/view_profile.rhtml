@@ -1,0 +1,10 @@
+<html>
+<b><h3>Profile of <%= @faculty.fac_displayname %>  </h3></b>
+<ol type=1>
+<li><b><font color = 'green'> Email Id : </font></b><%= @faculty.email %><br></li>
+<li><b><font color = 'green'> Name : </font></b><%= @faculty.fac_displayname %><br></li>
+<li><b><font color = 'green'> Department: </font></b><%= @faculty.fac_department %><br></li>
+<li><b><font color = 'green'> Education : </font></b><%= @faculty.fac_edudetails %><br></li>
+<li><b><font color = 'green'> About Me : </font></b><%= @faculty.fac_aboutme %><br></li>
+</ol>
+<%= link_to 'Ask Question', :controller => 'users', :action => 'ask_question', :id => @user , :fac_id => @faculty %>

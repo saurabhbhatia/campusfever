@@ -1,0 +1,22 @@
+<table width="100%">
+<tr valign="top">
+<td>
+<%= render :partial => 'side_menu'%> 
+</td>   
+<td>
+
+<h2>Notifications</h2>
+<p>
+Email notifications will be sent to your email address based on these settings.
+</p>
+<% form_for :user, :url => settings_path do |form| %>
+    <p><%= form.check_box :notify_request %>Pending friend request: </p>
+    <p><%= form.check_box :notify_private %>Private message received: </p>
+    <p><%= form.check_box :notify_file %>File received: </p>
+    <p><%= form.check_box :notify_event %>Event invite received: </p>
+    <p><%= form.check_box :notify_link %>Link received: </p>
+    <p><%= form.check_box :notify_plain %>Plain message received: </p>
+    <p><%= form.check_box :notify_reply %>Reply received: </p>
+    <p><%= submit_tag "Save changes..."%></p>
+<% end %>
+</td>

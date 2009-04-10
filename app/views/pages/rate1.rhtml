@@ -1,0 +1,18 @@
+<h1></h1>
+<h5>
+<%= link_to "Home", :action => 'show1', :id => @club.id %>  
+</h5>
+<h5>your vote:<%= @rate1 %></h5>
+<h5>Ratings of this Club</h5> 
+<table>
+<th>Best</th>
+<th>Good</th>
+<th>Average</th>
+<th>Bad</th>
+<tr>
+<td><%= @rate2 %></td>
+<td><%= @rate3 %></td>
+<td><%= @rate4 %></td>
+<td><%= @rate5 %></td></tr>
+</table>
+<h4>Average Rate :<b><%= @ans %></b></h4><br>

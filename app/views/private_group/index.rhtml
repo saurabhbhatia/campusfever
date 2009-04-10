@@ -1,0 +1,30 @@
+<h2>Private groups</h2>
+
+<p>
+<%= link_to "New group", private_group_path(:action => 'new') %>&nbsp;
+<%= link_to "Find a group to join", private_group_path(:action => 'search') %>
+</p>
+
+<% if @private_groups %>
+<div id="groups">
+<table>
+<tr><th>Group</th><th>Your role</th></tr>
+<% for group in @private_groups %>
+<tr>
+<td><%= link_to group.name, private_group_path('view',group) %></td>
+<td>
+<% if group.is_author? current_faculty %>
+  Author <%= link_to 'Edit?', :action => 'edit', :id => group %>
+<% elsif group.is_pending_accept? current_faculty %>
+  Request to accept
+<% elsif group.is_pending_request? current_faculty %>
+Request to join
+<% elsif group.is_member? current_faculty %>
+You're a member of this group
+<% end %>	
+</td>
+</tr>
+<% end %>
+</table>
+</div>  
+<% end %>

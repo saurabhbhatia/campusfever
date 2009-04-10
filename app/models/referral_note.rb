@@ -1,0 +1,2 @@
+class ReferralNote < Note
+end

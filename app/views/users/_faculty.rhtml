@@ -1,0 +1,17 @@
+<tr class="<%= cycle('odd', 'even') -%>">
+
+  <td><%= faculty.fac_displayname -%></td>
+  <td><%= faculty.email -%></td>
+  <td><%= faculty.fac_title -%></td>
+  <td><%= faculty.fac_department -%></td>
+  <td><%= faculty.dob -%></td>
+  <td><%= faculty.enabled ? 'yes' : 'no' -%>
+  <% unless @user == logged_in_user -%>
+    <% if faculty.enabled -%>
+      [<%= link_to('disable', faculty_url(user.id), :method => :delete) %>]
+    <% else -%>
+      [<%= link_to('enable', enable_faculty_url(user.id), :method => :put) %>]
+    <% end -%>
+  <% end -%>
+  </td>
+</tr>

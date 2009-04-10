@@ -1,0 +1,29 @@
+<html><h3><font color='orange' ><b>Reply </b></font></h3>
+<div class="depot-form" >
+
+<%= error_messages_for 'post'%>
+
+
+<% form_tag ({:action => 'updatereply', :id => @forum_id}) do %>    
+
+<h5> community name: <%= @clubname %>  </h5> 
+<h5> topic name:<%= @subject %>   </h5>  
+<h5> user name:   </h5>
+<p><label for="post_message">Message</label><br/>
+<%= text_field 'post', 'message'    %></p>
+
+
+<p><label for="post_thought">Description</label><br/>
+<%= text_area 'post', 'thought', "rows" => 10,"cols" => 30 %></p>
+
+
+<%= submit_tag "send" , :class => "submit" %>
+
+<% end %>
+
+
+</div>
+</html>
+
+
+

@@ -1,0 +1,84 @@
+<%= error_messages_for 'user' %>
+
+<!--[form:user]-->
+<p><label for="user_firstname">Firstname</label><br/>
+<%= text_field 'user', 'firstname'  %></p>
+
+<p><label for="user_lastname">Lastname</label><br/>
+<%= text_field 'user', 'lastname'  %></p>
+
+<p><label for="user_email">Email</label><br/>
+<%= text_field 'user', 'email'  %></p>
+
+<p><label for="user_password">Passowrd:</label><br/>
+<%= password_field 'user', 'password' %></p>
+
+<p><label for="user_password_confirmation">Password Confirmation:</label><br/>
+<%= password_field 'user', 'password_confirmation' %></p>
+
+<!--<p><label for="user_activate">Activate</label><br/>
+<select id="user_activate" name="user[activate]"><option value="false">False</option><option value="true" selected>True</option></select></p>-->
+
+<p><label for="user_pass_month_year">Pass month year</label><br/>
+<%= date_select 'user', 'pass_month_year'  %></p>
+
+<p>State <br />
+<% @states = State.find(:all) %>
+<select name="state_id" id="state_id">
+    <option value="">Select City</option>
+    <% @states.each do |state| %>
+	<option value="<%= state.id %>">
+	<%= state.state %>
+    </option>
+    <% end %>
+</select></p>
+
+<p>City
+<div id="city_id_container">
+    <select name="city_id" disabled="disabled">
+	<option value="">No City</option>
+    </select>
+</div>
+
+<%= observe_field("state_id", :frequency => 0.25, :update => "city_id_container", :url => { :action => :add_link_city }, :with => "'state_id='+value") %></p>
+
+<!--<p><label for="user_branch">Branch</label><br/>
+<%= text_field 'user', 'branch'  %></p>-->
+
+<p><label for="user_semester">Semester</label><br/>
+<%= text_field 'user', 'semester'  %></p>
+
+<!--<p><label for="user_state">State</label><br/>
+<%= text_field 'user', 'state'  %></p>-->
+
+<!--<p><label for="user_city">City</label><br/>
+<%= text_field 'user', 'city'  %></p>
+
+<p><label for="user_college">College</label><br/>
+<%= text_field 'user', 'college'  %></p>
+
+<p><label for="user_course">Course</label><br/>
+<%= text_field 'user', 'course'  %></p>-->
+
+<!--<p><label for="user_created_at">Created at</label><br/>
+<%= datetime_select 'user', 'created_at'  %></p>
+
+<p><label for="user_updated_at">Updated at</label><br/>
+<%= datetime_select 'user', 'updated_at'  %></p>
+
+<p><label for="user_last_login_at">Last login at</label><br/>
+<%= datetime_select 'user', 'last_login_at'  %></p>
+
+<p><label for="user_visibility">Visibility</label><br/>
+<%= text_field 'user', 'visibility'  %></p>
+
+<p><label for="user_status">Status</label><br/>
+<%= text_field 'user', 'status'  %></p>
+
+<p><label for="user_verifyflag">Verifyflag</label><br/>
+<select id="user_verifyflag" name="user[verifyflag]"><option value="false">False</option><option value="true">True</option></select></p>
+
+<p><label for="user_blockflag">Blockflag</label><br/>
+<select id="user_blockflag" name="user[blockflag]"><option value="false">False</option><option value="true">True</option></select></p>-->
+<!--[eoform:user]-->
+

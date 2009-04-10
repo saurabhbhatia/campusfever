@@ -1,0 +1,18 @@
+<h1><b><%= @name%></b></h1>
+<h1 align="left"><%= @image %></h1>
+
+<h1 align="center"><%= @description %></h1>
+
+
+<h1 align="center">  Forum <br><br><br>
+
+
+<%= @subject %><br>
+
+
+<%= link_to 'view all', :action => 'update'%>
+ 
+
+
+<%= link_to 'new topic', :action => 'newtopic', :id => @club_id %>
+    

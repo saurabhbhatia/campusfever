@@ -1,0 +1,13 @@
+<p>Set of friends</p>
+<% form_tag do -%>
+	<% for @friend in @friends %>
+      <%= check_box_tag (:friend, @friend.id, @checkbox_statuses[@friend.id], 
+        {:index => @friend.id, :name => "member_indexes[]" }) %>
+      <%= @friend.login %><br/>
+	<% end %>
+	Set name:<br/>
+	<%= text_field "group", 'name' %><p/>
+    <%= submit_tag "Save changes..." %>
+<% end -%>
+
+	

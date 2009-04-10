@@ -1,0 +1,5 @@
+<h2> Your Uploaded Image </h2>
+
+<img src="<%= url_for(:action => 'picture', :id => @picture.id) %>" height=100/><br>
+<h3><%= @picture.comment %></h3><br><br>
+<strong><%= link_to 'continue creating a club', :controller => 'pages', :action => 'new2', :id =>@picture.id %></strong>

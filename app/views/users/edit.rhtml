@@ -1,0 +1,26 @@
+<!--<h1>Editing user</h1>
+
+<% form_tag :action => 'update', :id => @user do %>
+  <%= render :partial => 'form' %>
+  <%= submit_tag 'Edit' %>
+<% end %>
+
+<%= link_to 'Show', :action => 'show', :id => @user %> |
+<%= link_to 'Back', :action => 'list' %>-->
+
+<h2><center> Edit your account </center></h2>
+
+<p><%= link_to 'Show my profile', user_path(@user) %></p>
+<%= error_messages_for :user %>
+<% form_for :user,
+            :url => user_url(@user),
+            :html => { :method => :put } do |f| -%>
+  <p>First Name:<br /><%= f.text_field :firstname, :size => 60 %></p>
+  <p>Last Name:<br /><%= f.text_field :lastname, :size => 60 %></p>
+  <p>Semester:<br /><%= f.text_field :semester, :size => 60 %></p>
+  <p>Password:<br /><%= f.password_field :password, :size => 60 %></p>
+  <p>Password Confirmation:<br />
+    <%= f.password_field :password_confirmation, :size => 60 %></p>
+  <%= submit_tag 'Save' %>
+<% end -%>
+

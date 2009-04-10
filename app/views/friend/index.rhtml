@@ -1,0 +1,28 @@
+<table width="100%">
+<tr valign="top">
+
+<td width="30%">
+<div id="friend_list">
+    <%#= render :partial => 'friend_controls', :object => @friends, :locals => { :faculty => @faculty } %>
+</div>
+</td>	
+<td width="70%">
+
+<div id="search_form">
+      <% form_remote_tag(:url => search_friend_path, 
+                         :update => 'search_result',
+                         :before => "Element.show('indicator_image');",
+                         :complete => "Element.hide('indicator_image');"
+      ) do %>
+        <%= text_field_tag :search %>
+        <span id="indicator_image" style="display:none"><%= image_tag 'spinner.gif' %></span>
+        <%= submit_tag "Search friend..." %>
+    <% end %>
+</div>
+
+<div id="search_result">
+</div>	
+</td>
+
+</tr>	
+</table>

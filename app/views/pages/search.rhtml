@@ -1,0 +1,16 @@
+<h1></h1>
+<h5>
+<%= link_to 'Home', :action => 'index' %></h5>
+<h1 align ="left">List of Clubs</h1>
+
+<% if @search1.empty? %>
+  <h3><font color = red> not found!</font></h3>
+<% else %>
+<% for i in @search1 %>
+<h4><font color='green' ><%= link_to i.name,:action=>'show1', :id => i.id %><br> </font></h4>
+<% end %><br>
+
+<h5 align ="bottom">
+<%= link_to 'back',:action=>'index'%><br>
+</h5>
+<% end %>

@@ -1,0 +1,39 @@
+<%= error_messages_for 'faculty' %>
+
+<p>State <br />
+<% @states = State.find(:all) %>
+<select name="state_id" id="state_id">
+    <option value="">Select City</option>
+    <% @states.each do |state| %>
+	<option value="<%= state.id %>">
+	<%= state.state %>
+    </option>
+    <% end %>
+</select></p>
+
+<p>City
+<div id="city_id_container">
+    <select name="city_id" disabled="disabled">
+	<option value="">No City</option>
+    </select>
+</div>
+
+<%= observe_field("state_id", :frequency => 0.25, :update => "city_id_container", :url => { :action => :add_link_city }, :with => "'state_id='+value") %></p>
+
+<p>Faculty Email<br/>
+<%= text_field 'faculty', 'email', :size => 15 %></p>
+
+<p>Passowrd:<br/>
+<%= password_field 'faculty', 'password', :size => 15 %></p>
+
+<p>Password Confirmation:<br/>
+<%= password_field 'faculty', 'password_confirmation', :size => 15 %></p>
+
+<p>Faculty Display Name<br/>
+<%= text_field 'faculty', 'fac_displayname', :size => 15 %></p>
+
+<p>Faculty College Id<br/>
+<%= text_field 'faculty', 'admincollege_id', :size => 5 %></p>
+
+<p>Enter the Number of Profiles You Want to Assign to this Faculty<br/>
+<%= text_field 'faculty', 'profiles_sanction', :size => 5 %></p>

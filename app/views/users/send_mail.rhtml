@@ -1,0 +1,4 @@
+<% @user = User.find(params[:id]) %>
+
+Thank You <b><%= @user.firstname %> <%= @user.lastname %></b>.<br />
+An Email has been sent to Your Email Id <b><%= @user.email %></b>. Please follow the Email Instructions.

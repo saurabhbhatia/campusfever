@@ -1,0 +1,17 @@
+<div id="faculty_<%= added_friend.id %>">
+<p>
+<%= link_to added_friend.fac_displayname, 
+    main_path(added_friend.login) %><br/>
+User name: <%= added_friend.login %>
+</p>
+<p>
+<%= added_friend.description %>
+</p>
+
+<% if is_friend? %>
+This user has been added as your friend.
+<% else %>
+You've becomed a fan of this user.
+<% end %>
+<hr/>
+</div>

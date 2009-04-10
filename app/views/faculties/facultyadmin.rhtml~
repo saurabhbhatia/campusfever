@@ -1,0 +1,23 @@
+<% form_tag :action => 'list' do %>
+
+<p><label for="faculty_email">Faculty Email</label><br/>
+<%= text_field 'faculty', 'email', :size => 15 %></p>
+
+<p><label for="faculty_password">Passowrd:</label><br/>
+<%= password_field 'faculty', 'password', :size => 15 %></p>
+
+<p><label for="faculty_password_confirmation">Password Confirmation:</label><br/>
+<%= password_field 'faculty', 'password_confirmation', :size => 15 %></p>
+
+<p><label for="faculty_fac_displayname">Faculty Display Name</label><br/>
+<%= text_field 'faculty', 'fac_displayname', :size => 15 %></p>
+
+<p><label for="faculty_admincollege_id">Faculty College Id</label><br/>
+<%= text_field 'faculty', 'admincollege_id', :size => 5 %></p>
+
+<p><label for="faculty_profiles_sanction">Enter the Number of Profiles You Want to Assign to this Faculty</label><br/>
+<%= text_field 'faculty', 'profiles_sanction', :size => 5 %></p>
+
+<%= submit_tag "Create" %>
+
+<% end %>

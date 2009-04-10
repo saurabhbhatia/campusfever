@@ -1,0 +1,114 @@
+<h2><i>Welcome <%= @user.firstname %> <%= @user.lastname %>, here is the list of your saved and published exams</i></h2>
+
+<center>
+<table>
+<tr>
+<th>Company Name</th>
+<th>Published Year</th>
+<th>Test Name</th>
+<th>Exam Type</th>
+<th>Timer Set (hh:mm:ss)</th>
+<th>Exam Status</th>
+<th>Edit/Delete</th>
+</tr>
+
+<% for paper in @paper %>
+<tr>
+<td><font color="green"><b><%= paper.c_name %></b></font></td>
+<td align="center"><font color="blue"><%= paper.c_year %></font></td>
+<td align="center"><font color="green"><b><%= paper.test_name %></b></font></td>
+<td align="center"><font color="blue"><%= paper.exam_type %></blue></td>
+<td align="center"><%= paper.timer %></td>
+<td><%= paper.exam_value %></td>
+<% if paper.exam_value == 'save' %>
+<td align="center"><%= link_to 'Edit', :controller => 'exams', :action => 'list', :id => paper, :userid => @user %> | <%= link_to 'Delete', :action => 'destroy', :id => paper %></td>
+<% elsif paper.exam_value == nil %>
+<td align="center"><%= link_to 'Edit', :controller => 'exams', :action => 'list', :id => paper, :userid => @user %> | <%= link_to 'Delete', :action => 'destroy', :id => paper %></td>
+<% elsif paper.exam_value == "publish" %>
+<td align="center">Status: Published</td>
+<% end %>
+</tr>
+<% end %>
+</table>
+
+<!--
+<% for paper in @paper %>
+
+<% if paper.exam_value == "publish" %>
+<center>
+<table>
+  <tr>
+  <th> Company Name</th>
+  <th> Publishing Year </th>
+  <th> Exam Name </th>
+  <th> Exam Type </th>
+  <th> Created By </th>
+  <th> Play Option </th>
+  </tr>
+
+  <tr>
+  <td><font color='green'><b><%= paper.c_name %></b></font></td>
+  <td align="center"><font color="blue"><%= paper.c_year %></font></td>
+  <td align="center"><font color='green'><b><%= paper.test_name %></b></font></td>
+  <td align="center"><font color="blue"><%= paper.exam_type %></font></td>
+  <td><%= paper.timer %></td>
+  <td><%= paper.exam_value %></td>
+  <td><%= link_to 'Edit', :controller => 'exams', :action => 'list', :id => paper, :userid => @user %> | <%= link_to 'Delete', :action => 'destroy', :id => paper %></td>
+  </tr>
+<% else %>
+  <h3>You have no Publsihed Exams so Far</h3>
+<% end %>
+
+<% if paper.exam_value == "save" %>
+<center>
+<table>
+  <tr>
+  <th> Company Name</th>
+  <th> Publishing Year </th>
+  <th> Exam Name </th>
+  <th> Exam Type </th>
+  <th> Created By </th>
+  <th> Play Option </th>
+  </tr>
+
+  <tr>
+  <td><font color='green'><b><%= paper.c_name %></b></font></td>
+  <td align="center"><font color="blue"><%= paper.c_year %></font></td>
+  <td align="center"><font color='green'><b><%= paper.test_name %></b></font></td>
+  <td align="center"><font color="blue"><%= paper.exam_type %></font></td>
+  <td><%= paper.timer %></td>
+  <td><%= paper.exam_value %></td>
+  <td><%= link_to 'Edit', :controller => 'exams', :action => 'list', :id => paper, :userid => @user %> | <%= link_to 'Delete', :action => 'destroy', :id => paper %></td>
+  </tr>
+<% else %>
+  <h3>You have no Publsihed Exams so Far</h3>
+<% end %>
+
+<% if paper.exam_value == "" %>
+<center>
+<table>
+  <tr>
+  <th> Company Name</th>
+  <th> Publishing Year </th>
+  <th> Exam Name </th>
+  <th> Exam Type </th>
+  <th> Created By </th>
+  <th> Play Option </th>
+  </tr>
+
+  <tr>
+  <td><font color='green'><b><%= paper.c_name %></b></font></td>
+  <td align="center"><font color="blue"><%= paper.c_year %></font></td>
+  <td align="center"><font color='green'><b><%= paper.test_name %></b></font></td>
+  <td align="center"><font color="blue"><%= paper.exam_type %></font></td>
+  <td><%= paper.timer %></td>
+  <td><%= paper.exam_value %></td>
+  <td><%= link_to 'Edit', :controller => 'exams', :action => 'list', :id => paper, :userid => @user %> | <%= link_to 'Delete', :action => 'destroy', :id => paper %></td>
+  </tr>
+<% else %>
+  <h3>You have no Publsihed Exams so Far</h3>
+<% end %>
+
+</table>
+</center>
+<% end %>-->

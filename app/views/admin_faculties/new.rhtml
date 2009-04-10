@@ -1,0 +1,15 @@
+<HTML>
+
+<HEAD>
+<%= javascript_include_tag "prototype" %>
+</HEAD>
+
+<BODY>
+
+<% form_tag :action => 'create' do %>
+	<%= render :partial => 'form' %>
+	<%= submit_tag "Create" %>
+<% end %>
+
+</BODY>
+</HTML>

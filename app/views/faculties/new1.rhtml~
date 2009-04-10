@@ -1,0 +1,35 @@
+<h1>New faculty</h1>
+
+<HTML>
+<HEAD>
+<TITLE>Faculty Login</TITLE>
+<%= javascript_include_tag "prototype" %>
+</SCRIPT>
+</HEAD>
+
+<BODY>
+<% form_tag :action => 'create2' do %>
+
+<p>Faculty Email<br/>
+<%= text_field 'faculty', 'email', :size => 15 %></p>
+
+<p>Passowrd:<br/>
+<%= password_field 'faculty', 'password', :size => 15 %></p>
+
+<p>Password Confirmation:<br/>
+<%= password_field 'faculty', 'password_confirmation', :size => 15 %></p>
+
+<p>Faculty Display Name<br/>
+<%= text_field 'faculty', 'fac_displayname', :size => 15 %></p>
+
+<p>Faculty College Id<br/>
+<%= text_field 'faculty', 'admincollege_id', :size => 5 %></p>
+
+<p>Enter the Number of Profiles You Want to Assign to this Faculty<br/>
+<%= text_field 'faculty', 'profiles_sanction', :size => 5 %></p>
+
+<%= submit_tag "Create" %>
+
+<% end %>
+</BODY>
+</HTML>

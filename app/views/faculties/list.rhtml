@@ -1,0 +1,6 @@
+<h1>Listing faculties</h1>
+<% for i in @faculties %>
+<b><%= i.fac_displayname %>
+<b><%= link_to 'View Question n Answers', :action =>'questn_ans',:id => i.id, :userid => @user %></b><br>
+<% end %>
+

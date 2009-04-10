@@ -1,0 +1,47 @@
+<h1></h1>
+<h3><i><bgcolor='pink'><font color='orange' > Create a Club </font></i> </h3>
+<div class="depot-form" >
+
+
+<%= error_messages_for 'club' %>
+
+<% form_tag :action => 'club', :id => @picture.id do %> 
+   
+<p> Image: </p><img src="<%= url_for(:controller =>'pictures',:action => 'picture',:id => @picture.id) %>" height=100 />
+<%= link_to 'change image',:controller =>'pictures', :action => 'get' %></b><br>
+ 
+<p><label for="club_name"><font color='green' ><b> Name :</b></font></label>
+<%= text_field 'club', 'name'  %></p>
+<% @choices = Category.find(:all)   %>
+<p><font color='green' ><b> Category :</b></font>
+<%= select_tag('category', options_from_collection_for_select(@choices, :category, :category)) %></p>
+<font color='green' ><b> Community Type :</b></font>
+<input type="radio" name="type1" value="public"> public
+<input type="radio" name="type1" value="private"> private
+<br>  
+
+<p><label for="club_description"><font color='green' ><b> Description :</b></font></label><br>
+<%= text_area 'club', 'description',   "cols" => 29, "rows" => 5 %></p>
+
+ <p><label for="club_do"><font color='green' ><b> Do's :</b> </font></label><br>
+ 1.<%= text_field 'club', 'do'  %><br> 
+<p><label for="club_do1"><font color='green' ><b></b> </font></label>
+ 2.<%= text_field 'club', 'do1'  %> <br>
+<p><label for="club_do2"><font color='green' ><b></b> </font></label>
+ 3.<%= text_field 'club', 'do2'  %><br> <br></p>
+
+<p><label for="club_dont"><font color='green' ><b> Dont's :</b> </font></label><br>
+1.<%= text_field 'club', 'dont'  %><br> 
+<p><label for="club_dont1"><font color='green' ><b></b> </font></label>
+2.<%= text_field 'club', 'dont1'  %> <br>
+<p><label for="club_dont2"><font color='green' ><b></b> </font></label>
+3.<%= text_field 'club', 'dont2'  %><br> <br></p>
+</h5>
+
+<%= submit_tag "Add", :class => "submit" %>
+<% end %>
+
+
+</div>
+
+

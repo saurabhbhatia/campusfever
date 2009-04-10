@@ -1,0 +1,55 @@
+<%= error_messages_for 'faculty' %>
+
+<!--[form:faculty]-->
+<p><label for="faculty_email">Faculty Email</label><br/>
+<%= text_field 'faculty', 'email'  %></p>
+
+<p><label for="faculty_password">Passowrd:</label><br/>
+<%= password_field 'faculty', 'password' %></p>
+
+<p><label for="faculty_password_confirmation">Password Confirmation:</label><br/>
+<%= password_field 'faculty', 'password_confirmation' %></p>
+
+<p><label for="faculty_fac_displayname">Faculty Display Name</label><br/>
+<%= text_field 'faculty', 'fac_displayname'  %></p>
+
+<p><label for="faculty_fac_title">Faculty Title</label><br/>
+<%= text_field 'faculty', 'fac_title'  %></p>
+
+<p><label for="faculty_fac_department">Faculty Department</label><br/>
+<%= text_field 'faculty', 'fac_department'  %></p>
+
+<% @radioname = 1 %>
+<p>Course <br />
+<% @courses = Course.find(:all) %>
+   <% @courses.each do |course| %>
+	<input type="checkbox" name="course_id<%= @radioname.to_s %>" id="course_id<%= @radioname.to_s %>" value="<%= course.id %>">
+	<%= course.course %>
+<%= observe_field("course_id#{@radioname.to_s}", :frequency => 0.25, :update => "branch_id_container#{@radioname.to_s}", :url => { :action => :add_link_branch }, :with => "'course_id='+value") -%>
+<% @radioname = @radioname + 1 %>
+    <% end %>
+</p>
+
+<p>Branch
+<% @radioname = 1 %>
+<% @courses.each do |course| %>
+<div id="branch_id_container<%= @radioname.to_s %>" style="float:left;display:block;">
+</div>
+<% @radioname = @radioname + 1 %>
+<% end %>
+</p><br /><br />
+
+<p><label for="faculty_fac_edudetails">Faculties Education Details</label><br/>
+<%= text_area 'faculty', 'fac_edudetails', :rows => 3, :column => 15 %></p>
+
+<p><label for="faculty_fac_aboutme">Faculty About Me</label><br/>
+<%= text_area 'faculty', 'fac_aboutme', :rows => 3, :column => 15 %></p>
+
+<p><label for="faculty_gender">Gender</label><br/>
+<%= text_field 'faculty', 'gender'  %></p>
+
+<p><label for="faculty_dob">Dob</label><br/>
+<%= text_field 'faculty', 'dob'  %></p>
+
+<!--[eoform:faculty]-->
+

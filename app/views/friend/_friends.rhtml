@@ -1,0 +1,5 @@
+<h2>Your friends:</h2>
+<p><%= link_to "New friend", friend_path %></p>
+<% for friend in friends %>
+    <%= link_to friend.login, main_path(friend.login) %><br/>
+<% end %>

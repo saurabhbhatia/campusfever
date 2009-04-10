@@ -1,0 +1,81 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+       "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+  <title>StartExam: <%= controller.action_name %></title>
+  <%= stylesheet_link_tag 'scaffold' %>
+</head>
+<body>
+
+<p style="color: green"><%= flash[:notice] %></p>
+
+<%= yield  %>
+
+</body>
+</html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional/
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>RailsCoders</title>
+    <%= stylesheet_link_tag 'main' %>
+    <%= javascript_include_tag :defaults %>
+  <%= stylesheet_link_tag 'scaffold' %>
+    <%= yield :head %>
+  </head>
+  <body>
+    <div id="container">
+      <div id="header">
+      </div>
+      <div id="sidemenu">
+<ul>
+  <li><%= link_to 'Home', index_url %></li>
+
+  <% if is_logged_in? %>
+  <li>Logged in as: <i><%= logged_in_user.email %></i></li>
+
+  <% else %>
+  <li><%= link_to 'Signup', :controller => 'users', :action => 'new' %></li>
+  <li><%= link_to 'Login', :controller => 'account', :action => 'login' %></li>
+  <% end %>
+
+
+  <% if is_logged_in? %>
+  <li><%= link_to "Update Your Profile", edit_user_path(logged_in_user) %></li>
+  <li><%= link_to "View Profile", :controller => 'users', :action => 'show', :id => logged_in_user  %></li>
+  <li><%= link_to "Play a Test", :controller => 'users', :action => 'play_test', :id => logged_in_user %></li>
+  <li><%= link_to "Logout", {:controller => 'account', :action => 'logout'}, :method => :post %></li>
+
+  <% else %>
+    <li><%= link_to 'Signup', :controller => 'users', :action => 'new' %></li>
+    <li><%= link_to 'Login', :controller => 'account', :action => 'login' %></li>
+  <% end %>
+
+  <% if logged_in_user and logged_in_user.has_role?('administrator') %>
+    <li><hr size="1" width="90%" align="left"/></li>
+    <li><b>Admin Options</b></li>
+    <li><%= link_to "Administer Users", users_path %></li>
+    <li><%= link_to "Edit Pages", :controller => 'roles', :action => 'update' %></li>
+    <li><%= link_to "Create Exam", :controller => 'papers', :action => 'start_exam', :id => logged_in_user %></li>
+    <li><%= link_to "Saved/Published Exams", :controller => 'papers', :action => 'listing', :id => logged_in_user %></li>
+    <li><%= link_to "Add Category", :controller => 'pages', :action => 'category', :id => logged_in_user %></li>
+    <li><%= link_to "Gurugyaan Section", :controller => 'faculties', :action => 'index', :id => logged_in_user %></li>
+    <li><%= link_to "Create Guru's Profile", :controller => 'gurus', :action => 'new', :id => logged_in_user %></li>
+    <li><%= link_to "Add/Moderate Cities", :controller => 'users', :action => 'moderation', :id => logged_in_user %></li>
+  <% end %>
+
+</ul>      </div>
+      <div id="content">
+         <% if flash[:notice] -%>
+           <div id="notice"><%= flash[:notice] %></div>
+         <% end -%>
+         <% if flash[:error] -%>
+           <div id="error"><%= flash[:error] %></div>
+         <% end -%>
+         <%= yield %>
+      </div>
+    </div>
+  </body>
+</html>

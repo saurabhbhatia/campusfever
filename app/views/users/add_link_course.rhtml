@@ -1,0 +1,27 @@
+<HTML>
+  <HEAD>
+    <%= javascript_include_tag "prototype" %>
+  </HEAD>
+
+<BODY>
+<p>	<% @html = "<select id='course_id' name='course_id'>" %>
+	<%= @html += "<option value=''>No Course</option>" %>
+	<% @courses.each do |@courses| %>
+	<%= @html = "<option value='#{@courses.id}'>#{@courses.course}</option>" %>
+	<% end %>
+	<%= @html = "</select>" %>
+</p>
+
+<p> If Your Course is not on the List, Please Click <%= link_to "Here", :controller => 'courses', :action => 'new', :id => @courses.college_id %> here to Add Your Course</p>
+
+<p>Branch
+<div id="branch_id_container">
+    <select name="branch_id" disabled="disabled">
+	<option value="">No Course</option>
+    </select>
+</div>
+
+<%= observe_field("course_id", :frequency => 0.25, :update => "branch_id_container", :url => { :action => :add_link_branch }, :with => "'course_id='+value") %></p>
+
+</body>
+</html>

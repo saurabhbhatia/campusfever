@@ -1,0 +1,93 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional/
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>RailsCoders</title>
+    <%= stylesheet_link_tag 'main' %>
+    <%= javascript_include_tag :defaults %>
+    <%= javascript_include_tag 'prototype' %>
+    <%= yield :head %>
+  </head>
+  <body>
+    <div id="container">
+      <div id="header">
+      </div>
+      <div id="sidemenu">
+<ul>
+  <li><%= link_to 'Home', index_url %></li>
+
+  <% if is_logged_in1? %>
+  <li>Logged in as: <i><%= logged_in_faculty.email %></i></li>
+
+  <% else %>
+  <li><%= link_to 'Signup', :controller => 'users', :action => 'new' %></li>
+  <li><%= link_to 'Login', :controller => 'account', :action => 'login' %></li>
+  <% end %>
+
+
+  <% if is_logged_in1? %>
+  <li><%= link_to "Update Your Profile", edit_faculty_path(logged_in_faculty) %></li>
+  <li><%= link_to "View Profile", :controller => 'faculties', :action => 'show', :id => logged_in_faculty  %></li>
+  <li><%= link_to "Create Article", :controller => 'articles', :action => 'new', :id => logged_in_faculty %></li>
+  <li><%= link_to "Facultie's Option", :controller => 'main', :action => 'main', :id => logged_in_faculty %></li>
+  <li><%= link_to "File & Notice Sec", :controller => 'faculties', :action => 'notice', :id => logged_in_faculty %></li>
+  <li><%= link_to "View Questions", :controller => 'faculties', :action => 'view_question', :id => logged_in_faculty %></li>
+  <li><%= link_to "Logout", {:controller => 'adminfaculty', :action => 'logout'}, :method => :post %></li>
+
+  <% else %>
+    <li><%= link_to 'Signup', :controller => 'users', :action => 'new' %></li>
+    <li><%= link_to 'Login', :controller => 'account', :action => 'login' %></li>
+  <% end %>
+      </div>
+      <div id="content">
+         <% if flash[:notice] -%>
+           <div id="notice"><%= flash[:notice] %></div>
+         <% end -%>
+         <% if flash[:error] -%>
+           <div id="error"><%= flash[:error] %></div>
+         <% end -%>
+<!--- Your Content Will Be Placed Here --->
+	<p>Hi,<%= @faculty.fac_displayname %>, Welcome in the Notice Section</p>
+		<p><B><U>File Uploading Section</U></B></p>
+			<% form_tag({ :action => "send_file_note", :id => @faculty, :upload_id => @upid, :multipart => true, :onsubmit => "UploadProgress.monitor('#{escape_javascript @upid}')"}, :id => id, :enctype =>  "multipart/form-data") do %>
+			<b>Files:</b>
+				<%= link_to_remote "Add field", :update => "files", :url => { :action => "add_field" }, :position => "after" %>;
+				<div id="files">
+				<%= render :partial => 'file_input' %>
+				<%= text_area 'note', 'type', :rows => 3, :column => 15 %>
+				</div><BR />
+			Send to:
+			<% @faculty_branches = Mybranch.find(:all, :conditions => ["faculty_id = ?", @faculty.id]) %>
+			<% for j in @faculty_branches %>
+				<% @fac_branch = Branch.find(:all, :conditions => ["id = ?", j.branch_id]) %>
+			<% for k in @fac_branch %>
+				<% @fac_branch_course = Course.find(:first, :conditions => ["id = ?", k.course_id]) %>
+					<p><%= @html = "<input type='checkbox' id='branch_id' name='branch[branch_id][]' value='#{k.id}'>#{k.branch}" %>
+					<h5>(<%= @fac_branch_course.course %>)</h5></p>
+			<% end %>
+			<% end %>
+			<input type="image" src="/images/upload-btn.gif" alt="" id="upload" onclick=" { new Effect.Appear('status_1234'); $('progress_1234').id = 'progress-bar'; $('results_1234 %>').id = 'results'; return true; }"/>
+		<% end %>
+
+<p><B><U>Notice Section</U></B></p>
+   <% form_tag :action => 'send_note', :id => @faculty do %>
+  WHAT : &nbsp;&nbsp;&nbsp;&nbsp;<%= text_field 'note', 'event_title' %> <br />
+  WHERE: &nbsp;&nbsp;&nbsp;<%= text_field 'note', 'event_location' %> <br />
+  WHEN : &nbsp;&nbsp;&nbsp;&nbsp;<%= datetime_select 'note','event_time' %> <br/>
+  DESC : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= text_area 'note', 'note', :rows => 4 %> <br /><br />
+  Send to:
+  <% @faculty_branches = Mybranch.find(:all, :conditions => ["faculty_id = ?", @faculty.id]) %>
+  <% for j in @faculty_branches %>
+  <% @fac_branch = Branch.find(:all, :conditions => ["id = ?", j.branch_id]) %>
+	<% for k in @fac_branch %>
+		<% @fac_branch_course = Course.find(:first, :conditions => ["id = ?", k.course_id]) %>
+	<ul><%= @html = "<input type='checkbox' id='branch_id' name='branch[branch_id][]' value='#{k.id}'>#{k.branch}" %>
+		<h5>(<%= @fac_branch_course.course %>)</h5></ul>
+	<% end %>
+  <% end %>
+  <br/>
+  <%= submit_tag 'Post It!' %>
+  <% end %> 
+</div>
+  </body>
+</html>

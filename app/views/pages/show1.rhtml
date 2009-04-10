@@ -1,0 +1,59 @@
+<html>
+<head>
+</head>
+<body>
+<div id="container">
+
+<div id="sidemenu" class="depot-form" >
+
+<strong><h4><%= @name %></h4>
+<img src="<%= url_for(:controller =>'pictures',:action => 'picture', :id => @club1.picture_id) %>" height=100 />
+<h4><%= @club1.caption %></h4>
+<h4>Forums :<%= @count %> 
+</h4></strong>
+
+<%= error_messages_for 'rate' %>
+<% form_tag ({:action => 'rate1', :id => @club1.id, :user_id => @user}) do %>    
+
+<h5 align = right><b><u> Rate this Club:</u></b><br>
+<input type="radio" name="rate3" value="best"> Best<br>
+<input type="radio" name="rate3" value="good"> Good<br>
+<input type="radio" name="rate3" value="average"> Average<br>
+<input type="radio" name="rate3" value="bad"> bad<br>
+<br>  
+
+<%= submit_tag "submit",  :class => "submit"  %>
+<% end %>
+</h5><br><br>
+
+</div>
+<div id="content">
+<table align=center >
+Thank You <%= @user.firstname %> <%= @user.lastname %> for creating This Club.
+<th></th>
+<th></th>
+<tr><td><b>Name :</b></td><td><%= @name%></td></tr><br>
+<tr><td><b>Category :</b></td><td><%= @club1.category %></td></tr><br>
+<tr> <td><b>Description :</b></td><td><%= simple_format @des%></td></tr><br>
+<tr><td> <b>Do's :</b></td><td> <%= @club1.do%>,<%= @club1.do1%>,<%= @club1.do2%></td></tr><br>
+
+<tr><td><b> Dont's :</b></td> <td><%= @club1.dont%>,<%= @club1.dont1%>,<%= @club1.dont2%></td></tr><br>
+
+<th>  Forums  </th>
+<th> created at </th>
+<tr>
+<h3><% for i in @forum %>
+<td><strong><%= link_to i.subject , :action => 'viewreply', :id => i.id %></strong></td>
+<td><%= i.created_at %></td>
+<tr>
+
+<% end %></h3>
+
+</table>
+
+<h4 align =center ><%= link_to 'view all', :action => 'view_all', :id => @club_id1%>
+<%= link_to 'new topic', :action => 'newtopic', :id => @club_id1 %></h4>
+    <%= yield %>
+</div>
+</body>
+</html>

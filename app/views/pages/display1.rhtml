@@ -1,0 +1,11 @@
+<h1></h1>
+<h5>
+<%= link_to 'Home', :action => 'index' %></h5>
+<h1> list of clubs </h1>
+<h4><% for i in @club %>
+<%= link_to i.name, :action=>'show1', :id=> i.id %><br>
+<% end %></h4>
+
+<h5 align ="bottom">
+<%= link_to 'back',:action=>'index'%><br>
+</h5>

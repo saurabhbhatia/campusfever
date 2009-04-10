@@ -1,0 +1,58 @@
+<h2>Group details</h2>
+
+<p>Name: <%= @private_group.name %></p>
+<p>Description: <%= @private_group.description %></p>
+<p>Owner: <%= @private_group.owner.login %></p>
+
+<% if @private_group.is_author? current_faculty %>
+  You're author. <%= link_to 'Invite members?', :action => 'search_members', :id => @private_group %>
+<% elsif @private_group.is_pending_accept? current_faculty %>
+  You're invited to join this group.
+  <%= link_to 'Accept!', :action => 'accept', :id => @private_group %>
+<% elsif @private_group.is_pending_request? current_faculty %>
+  You're requested to join this group. Please wait for approval...
+<% elsif @private_group.is_member? current_faculty %>
+  You're a member of this group
+<% else %>
+  <%= link_to 'Request to join!', :action => 'join', :id => @private_group %>
+<% end %>
+
+<hr/>
+
+<h3>List members</h3>
+
+<% if @members %>
+<div id="members">
+<table>
+<tr><th>Member</th><th>Membership</th>
+<th>Action</th></tr>
+
+<% for member in @members %>
+<tr>
+<td><%= member.fac_displayname %></td>
+<td>
+<% if @private_group.is_author? member %>
+  Author.
+<% elsif @private_group.is_pending_accept? member %>
+  Invited. Waiting for accept
+<% elsif @private_group.is_pending_request? member %>
+  Waiting for approval.
+<% elsif @private_group.is_member? member %>
+  Member
+<% end %>
+
+</td>
+<td>
+<% if (@is_owner and (@private_group.is_pending_request? member)) %>
+<%= link_to 'Approve!', :action => 'approve', :id => @private_group, :faculty_id => member %>
+<% end %>
+</td>
+</tr>
+<% end %>
+</table>
+</div>
+<% end %>
+
+<hr/>
+
+<p><%= link_to 'Back', private_group_path %></p>

@@ -1,0 +1,12 @@
+<script>
+function filterNotes(filter_option) {
+    document.location = ('/adminfaculty.login' + '/' + filter_option);
+	
+}
+</script>
+
+Show:
+<select name="filter_option" id="id_filter_option" onchange="filterNotes(this.value);">
+	<%= @filter_option_str %>
+</select>
+<%= render :partial => 'note_item', :collection => note_list, :locals => { :faculty => @faculty } %>

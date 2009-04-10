@@ -1,0 +1,28 @@
+
+<center>
+  <table border="1">
+   <tr>
+    <th>Company Name</th>
+    <th>Publishing Year</th>
+    <th>Exam Name</th>
+    <th>Exam Type</th>
+   </tr>
+
+   <tr>
+    <td><center><%= @paper.c_name %></center></td>
+    <td><center><%= @paper.c_year %></center></td>
+    <td><%=  @paper.test_name %></td>
+    <td><%= @paper.exam_type %></td>
+   </tr>
+
+</table>
+</center>
+<br />
+
+<h2> Your Uploaded Image </h2>
+
+Thank you <%= @user.firstname %> <%= @user.lastname %> for uploading image.<br />
+
+<img src="<%= url_for(:action => 'picture', :id => @picture.id) %>" height=100, width=500/><br>
+<h3><%= @picture.comment %></h3><br><br>
+<strong><%= link_to 'Continue Creating Exams', :controller => 'exams', :action => 'new1', :id => @picture.id, :paper_id => @paper, :userid => @user %></strong>

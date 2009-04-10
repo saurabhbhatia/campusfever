@@ -1,0 +1,33 @@
+<%= error_messages_for("picture" ) %>
+
+<% form_for(:picture,
+             :url => { :action => 'go', :paper_id => @paper, :id => @user },
+             :html => { :multipart => true }) do |form| %>
+
+<center>
+  <table border="1">
+   <tr>
+    <th>Company Name</th>
+    <th>Publishing Year</th>
+    <th>Exam Name</th>
+    <th>Exam Type</th>
+   </tr>
+
+   <tr>
+    <td><center><%= @paper.c_name %></center></td>
+    <td><center><%= @paper.c_year %></center></td>
+    <td><%=  @paper.test_name %></td>
+    <td><%= @paper.exam_type %></td>
+   </tr>
+  </table>
+</center>
+<br /><br />
+
+<center>
+<p><%= @user.firstname %> <%= @user.lastname %>, Please Upload the Image here, Image Can't be exceed more than 4 MB.</p>
+
+Image*: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= form.file_field("uploaded_picture" ) %><br /><br />
+Add Comment: <%= form.text_field("comment" ) %><br /><br />
+<%= submit_tag("Upload file" ) %>
+</center>
+<% end %>

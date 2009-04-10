@@ -1,0 +1,6 @@
+<html>
+<h2> List of Questions </h2>
+<% for i in @question %>
+<p><b><%= link_to i.question, :action =>'view_q_a', :id =>@faculty, :questid => i.id  %></b>
+<%= link_to 'reply', :action =>'reply', :id => @faculty, :questid => i.id %></p>
+<% end %>

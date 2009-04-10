@@ -1,0 +1,27 @@
+<h1>Listing courses</h1>
+
+<table>
+  <tr>
+  <% for column in Course.content_columns %>
+    <th><%= column.human_name %></th>
+  <% end %>
+  </tr>
+  
+<% for course in @courses %>
+  <tr>
+  <% for column in Course.content_columns %>
+    <td><%=h course.send(column.name) %></td>
+  <% end %>
+    <td><%= link_to 'Show', :action => 'show', :id => course %></td>
+    <td><%= link_to 'Edit', :action => 'edit', :id => course %></td>
+    <td><%= link_to 'Destroy', { :action => 'destroy', :id => course }, :confirm => 'Are you sure?', :method => :post %></td>
+  </tr>
+<% end %>
+</table>
+
+<%= link_to 'Previous page', { :page => @course_pages.current.previous } if @course_pages.current.previous %>
+<%= link_to 'Next page', { :page => @course_pages.current.next } if @course_pages.current.next %> 
+
+<br />
+
+<%= link_to 'New course', :action => 'new' %>

@@ -1,0 +1,43 @@
+<HTML>
+  <HEAD>
+     <%= javascript_include_tag "prototype" %>
+  </HEAD>
+
+<BODY>
+<h3 align="left"> Welcome <%= @user.firstname %> <%= @user.lastname %>, here you can test Your Skills </h3>
+<h4 align="left">To begin a Test first Select Basic formalities given below :- </h4>
+
+<h1 align="left">
+<div class="depot-form" >
+
+<% form_tag (:controller => '/papers', :action => 'search', :id => @search_id, :user_id => @user) do %>
+
+<%= text_field 'search', 'search'  %> 
+<%= submit_tag "Search Exam" , :class => "search" %>
+<% end %>
+</div>
+</h1>
+
+<% form_tag :controller => 'papers', :action => 'search1', :id => @user do %>
+
+<h4>To begin a Test first Select Basic formalities given below :- </h4>
+
+<% @papers = Paper.find(:all) %>
+<p>  Select your company name from list : 
+<%= select_tag('c_name',
+options_from_collection_for_select(@papers, :c_name, :c_name)) %>
+</p>
+
+<% @papers = Paper.find(:all) %>
+<p>  Select the Year from list : 
+<%= select_tag('c_year',
+options_from_collection_for_select(@papers, :c_year, :c_year)) %>
+</p>
+
+<h1 align="center">
+<%= submit_tag 'Go', :name => 'go' %>
+</h1>
+<% end %>
+
+</BODY>
+</HTML>

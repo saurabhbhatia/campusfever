@@ -1,0 +1,46 @@
+<center>
+<table>
+  <tr>
+   <th align="center">STATES</th>
+   <th align="center">CITIES</th>
+   <th align="center">COLLEGES</th>
+   <th align="center">COURSES</th>
+   <th align="center">BRANCHES</th>
+  </tr>
+
+  <tr> 
+   <td><%= link_to "States", :controller => 'users', :action => 'moderation', :id => @user %></td>
+   <td><%= link_to "Cities", :controller => 'users', :action => 'moderation1', :id => @user %></td>
+   <td><%= link_to "Colleges", :controller => 'users', :action => 'moderation2', :id => @user %></td>
+   <td><%= link_to "Courses", :controller => 'users', :action => 'moderation3', :id => @user %></td>
+   <td><%= link_to "Branches", :controller => 'users', :action => 'moderation4', :id => @user %></td>
+  </tr>
+</table>
+</center>
+<br />
+
+<center>
+<table>
+  <tr>
+  <% for column in City.content_columns %>
+    <th><%= column.human_name %></th>
+    <th>State id</th>
+    <th>Actions</th>
+  <% end %>
+  </tr>
+  
+<% for city in @city %>
+  <tr>
+  <% for column in City.content_columns %>
+    <td><%=h city.send(column.name) %></td>
+  <% end %>
+    <td></td>
+    <td><%= link_to 'Edit', :action => 'edit', :id => city, :user_id => @user %> |
+    <%= link_to 'Destroy', { :action => 'destroy', :id => city, :user_id => @user }, :confirm => 'Are you sure?', :method => :post %></td>
+  </tr>
+<% end %>
+</table>
+<center><%= link_to "Add New", :controller => 'cities', :action => 'new' %></center>
+<%= link_to 'Previous page', { :page => @city_pages.current.previous } if @city_pages.current.previous %>
+<%= link_to 'Next page', { :page => @city_pages.current.next } if @city_pages.current.next %> 
+</center>

@@ -1,0 +1,31 @@
+<center><h1>Your Question is Updated Successfully</h1></center>
+
+<center>
+  <table border="1">
+   <tr>
+    <th>Company Name</th>
+    <th>Publishing Year</th>
+    <th>Exam Name</th>
+    <th>Exam Type</th>
+   </tr>
+
+   <tr>
+    <td><center><%= @paper.c_name %></center></td>
+    <td><center><%= @paper.c_year %></center></td>
+    <td><%=  @paper.test_name %></td>
+    <td><%= @paper.exam_type %></td>
+   </tr>
+
+</table>
+</center>
+<br />
+
+<% for column in Exam.content_columns %>
+<p>
+  <b><%= column.human_name %>:</b> <%=h @exam.send(column.name) %>
+</p>
+<% end %>
+
+<%= link_to 'Edit', :action => 'edit', :id => @exam %> |
+<%= link_to 'Back', :action => 'list' %> |
+<%= link_to 'Go to Main Section', :action => 'list', :id => @paper, :userid => @user %>

@@ -1,0 +1,23 @@
+<table width="100%">
+<tr valign="top">
+<td>
+<%= render :partial => 'side_menu'%> 
+</td>   
+<td>
+
+<h2>Preference</h2>
+
+<% form_for :user, :url => settings_path do |form| %>
+    <p>Default send to: <br/>
+	<select id="user_default_target" name=user[default_target]>
+	<%= @option_str %>
+	</select>
+	</p>
+    <p>Default notes filter: <br/>
+    <select id="user_default_filter" name=user[default_filter]>
+    <%= @filter_option_str %>
+    </select>
+    </p>
+    <p><%= submit_tag "Save changes..."%></p>
+<% end %>
+</td>
